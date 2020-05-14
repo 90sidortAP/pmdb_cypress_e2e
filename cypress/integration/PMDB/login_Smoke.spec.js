@@ -18,6 +18,7 @@ import {
     newLastName,
     newEmail
 } from '../../support/variables'
+
 context('PMDB: Login Page Smoke tests', () => {
     beforeEach(() => {
         cy.openLoginPage()
@@ -36,7 +37,7 @@ context('PMDB: Login Page Smoke tests', () => {
         cy.url().should('eq', projectSite)
     })
     it('Should not be able to login without login and password', () => {
-        cy.loginAttempt(' ', ' ')
+        cy.loginAttempt(undefined, ' ')
         cy.get(addProject).should('not.exist')
         cy.url().should('eq', loginURL)
         cy.get(loginError).should('exist')
@@ -50,7 +51,7 @@ context('PMDB: Login Page Smoke tests', () => {
             .should('have.text', messageError)
     })
     it('Should be able to add account with Sign up', () => {
-        cy.createNewUser(newFirstName, newLastName, newEmail, newPassword)
+        cy.createNewUser(newFirstName, newLastName, newEmail, newPassword, newPassword)
     })
     it('Should be able to logout', () => {
         cy.loginUI(correctUser, correctPass)
