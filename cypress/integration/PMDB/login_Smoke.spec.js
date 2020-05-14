@@ -10,11 +10,13 @@ import {
     incorrectUser,
     incorrectPass,
     messageError,
-    signupButton,
-    newUserMenu,
-    inputPassNew,
     newPassword,
-    inputPassConfNew
+    timeWait,
+    logoutIcon,
+    loginSite,
+    newFirstName,
+    newLastName,
+    newEmail
 } from '../../support/variables'
 context('PMDB: Login Page Smoke tests', () => {
     beforeEach(() => {
@@ -47,25 +49,15 @@ context('PMDB: Login Page Smoke tests', () => {
             .should('exist')
             .should('have.text', messageError)
     })
-    it('Should be able to create new account', () => {
-        cy.get(signupButton)
-            .should('exist')
-            .click()
-        cy.get(newUserMenu).should('exist')
-        cy.get(inputPassNew).eq(1)
-            .should('exist')
-            .type(newPassword)
-        cy.get(inputPassConfNew)
-            .should('exist')
-            .type(newPassword)
-    })
     it('Should be able to add account with Sign up', () => {
-        cy.loginAttempt(' ', ' ')
-        cy.get(addProject).should('not.exist')
-        cy.url().should('eq', loginURL)
-        cy.get(loginError).should('exist')
+        cy.createNewUser(newFirstName, newLastName, newEmail, newPassword)
     })
-    // it('test', ()=>{
-    //     cy.loginUI('dabro', 'dupa123')
-    // })
+    it('Should be able to logout', () => {
+        cy.loginUI(correctUser, correctPass)
+        cy.get(addProject, { timeout: timeWait }).should('exist')
+        cy.url().should('eq', projectSite)
+        cy.get(logoutIcon, { timeout: timeWait }).click()
+        cy.get(documentButton).should('exist')
+        cy.url().should('eq', loginSite)
+    })
 })

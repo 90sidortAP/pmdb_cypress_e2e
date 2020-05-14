@@ -7,12 +7,38 @@ import {
     signInButton,
     inputUserName,
     inputPassword,
+    signupButton,
+    newUserMenu,
+    shortTime,
+    newUserName,
+    newUserLast,
+    newUserEmail,
+    inputPassNew,
+    inputPassConfNew
 } from './variables'
 
 Cypress.Commands.add("openLoginPage", () => {
     cy.visit(loginSite)
     cy.title().should('eq', titleSite)
     cy.get(contactButton)
+})
+
+Cypress.Commands.add("createNewUser", (userFirstName, userLastName, userEmail, userPassword) =>{
+    cy.get(signupButton)
+    .should('exist')
+    .click()
+    cy.get(newUserMenu, { timeout: shortTime }).should('exist')
+    cy.get(newUserName).type(userFirstName)
+    cy.wait(500)
+    cy.get(newUserLast).type(userLastName)
+    cy.wait(500)
+    cy.get(newUserEmail).type(userEmail)
+    cy.wait(500)
+    cy.get(inputPassNew).eq(1).type(userPassword)
+    cy.wait(500)
+    cy.get(inputPassConfNew).type(userPassword)
+    cy.wait(500)
+    cy.get('button').contains('Sign up').click()
 })
 
 Cypress.Commands.add("loginAttempt", (user, password) => {
@@ -46,4 +72,3 @@ Cypress.Commands.add("loginUI", (user, login) => {
         })
     })
 })
-
