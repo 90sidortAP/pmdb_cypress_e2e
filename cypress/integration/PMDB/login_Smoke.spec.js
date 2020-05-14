@@ -17,7 +17,7 @@ import {
     newFirstName,
     newLastName,
     newEmail
-} from '../../support/variables'
+} from '../../support/loginVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
     beforeEach(() => {

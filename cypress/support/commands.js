@@ -15,7 +15,7 @@ import {
     newUserEmail,
     inputPassNew,
     inputPassConfNew
-} from './variables'
+} from './loginVariables'
 
 Cypress.Commands.add("openLoginPage", () => {
     cy.visit(loginSite)

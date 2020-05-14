@@ -18,7 +18,7 @@ import {
     newLastName,
     newEmail,
     signInButton
-} from '../../support/variables'
+} from '../../support/loginVariables'
 
 context('PMDB: Login Page Full tests', () => {
     beforeEach(() => {

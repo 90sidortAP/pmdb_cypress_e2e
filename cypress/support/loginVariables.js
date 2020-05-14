@@ -1,4 +1,5 @@
-// Elements
+// This file contains data for login page tests
+// Login Elements
 export const contactButton = 'span[class="icon contact-icon"]'
 export const documentButton = 'span[class="icon documentation-icon"]'
 export const signInButton = 'button[id="signInDropdownMenuButton"]'
@@ -14,11 +15,11 @@ export const newUserEmail = 'input[placeholder="Email"]'
 export const inputPassNew = 'input[placeholder="Password"]'
 export const inputPassConfNew = 'input[placeholder="Confirm Password"]'
 export const logoutIcon = 'img[title="Logout"]'
-// URLs
+// Login URLs
 export const loginSite = 'http://127.0.0.1:8000/'
 export const projectSite = 'http://127.0.0.1:8000/projects/'
 export const loginURL = 'http://127.0.0.1:8000/accounts/login/'
-// Other data
+// Login Other data
 export const titleSite = 'PMDB' 
 export const correctUser = 'dabro'
 export const correctPass = 'dupa123'
