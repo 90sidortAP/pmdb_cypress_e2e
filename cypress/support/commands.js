@@ -1,21 +1,23 @@
 import {
     loginSite,
-    titleSite,
     contactButton,
     loginURL,
-    projectSite,
     signInButton,
     inputUserName,
     inputPassword,
     signupButton,
     newUserMenu,
-    shortTime,
     newUserName,
     newUserLast,
     newUserEmail,
     inputPassNew,
     inputPassConfNew
 } from './loginVariables'
+
+import {
+    titleSite,
+    shortTime
+} from './generalVariables'
 
 Cypress.Commands.add("openLoginPage", () => {
     cy.visit(loginSite)
@@ -66,7 +68,7 @@ Cypress.Commands.add("loginAttempt", (user, password) => {
     cy.get('button[type="submit"]').contains('Log in').click()
 })
 
-Cypress.Commands.add("loginUI", (user, login) => {
+Cypress.Commands.add("loginUI", (user, login, site) => {
     cy.visit('http://127.0.0.1:8000/')
     cy.getCookie('csrftoken').then((csrftoken) => {
         cy.request({
@@ -82,7 +84,7 @@ Cypress.Commands.add("loginUI", (user, login) => {
             cy.setCookie('sessionid', (result.allRequestResponses[0]['Response Headers']['set-cookie'][1]).substring(10,42))
             cy.setCookie('csrftoken', (result.allRequestResponses[0]['Response Headers']['set-cookie'][0]).substring(10,74))
         }).then(() => {
-            cy.visit(projectSite)
+            cy.visit(site)
         })
     })
 })

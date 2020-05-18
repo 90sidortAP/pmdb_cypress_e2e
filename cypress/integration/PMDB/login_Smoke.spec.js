@@ -4,20 +4,22 @@ import {
     correctUser,
     correctPass,
     addProject,
-    projectSite,
     loginURL,
     loginError,
     incorrectUser,
     incorrectPass,
     messageError,
     newPassword,
-    timeWait,
     logoutIcon,
     loginSite,
     newFirstName,
     newLastName,
     newEmail
 } from '../../support/loginVariables'
+import {
+    timeWait,
+    projectSite
+} from '../../support/generalVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
     beforeEach(() => {
@@ -54,7 +56,7 @@ context('PMDB: Login Page Smoke tests', () => {
         cy.createNewUser(newFirstName, newLastName, newEmail, newPassword, newPassword)
     })
     it('Should be able to logout', () => {
-        cy.loginUI(correctUser, correctPass)
+        cy.loginUI(correctUser, correctPass, projectSite)
         cy.get(addProject, { timeout: timeWait }).should('exist')
         cy.url().should('eq', projectSite)
         cy.get(logoutIcon, { timeout: timeWait }).click()

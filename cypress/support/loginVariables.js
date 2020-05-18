@@ -17,10 +17,8 @@ export const inputPassConfNew = 'input[placeholder="Confirm Password"]'
 export const logoutIcon = 'img[title="Logout"]'
 // Login URLs
 export const loginSite = 'http://127.0.0.1:8000/'
-export const projectSite = 'http://127.0.0.1:8000/projects/'
 export const loginURL = 'http://127.0.0.1:8000/accounts/login/'
 // Login Other data
-export const titleSite = 'PMDB' 
 export const correctUser = 'dabro'
 export const correctPass = 'dupa123'
 export const incorrectUser = 'dabro123'
@@ -30,5 +28,3 @@ export const newFirstName = 'New'
 export const newLastName = 'User'
 export const newEmail = 'new.user@adamed.com'
 export const newPassword = 'NewPass123'
-export const timeWait = 30000
-export const shortTime = 5000
