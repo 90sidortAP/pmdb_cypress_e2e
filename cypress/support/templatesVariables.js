@@ -20,6 +20,7 @@ export const templateDetailAgree = 'a[id="update-agreements-tab"]'
 export const templateDetailFinancial = 'a[id="update-financial-tab"]'
 export const templateDetailOthers = 'a[id="update-others-tab"]'
 export const templateContHeader = 'div[class="details__container-header"]'
+export const templateShowChange = 'img[alt="history of changes"]'
 // Templates URLs
 export const allTemplatesSite = 'http://127.0.0.1:8000/templates/'
 export const licenseTemplatesSite = 'http://127.0.0.1:8000/templates/licensein/'
