@@ -16,8 +16,19 @@ import {
 
 import {
     titleSite,
-    shortTime
+    shortTime,
+    managerAnnaS,
+    managerBartG,
+    managerAdamT,
+    timeWait
 } from './generalVariables'
+
+import {
+    templatePages,
+    templateRows,
+    selectRecordDisplay,
+    templateSearchFilter
+} from './templatesVariables'
 
 Cypress.Commands.add("openLoginPage", () => {
     cy.visit(loginSite)
@@ -86,5 +97,44 @@ Cypress.Commands.add("loginUI", (user, login, site) => {
         }).then(() => {
             cy.visit(site)
         })
+    })
+})
+
+Cypress.Commands.add("changePage", (pageNum) => {
+    cy.get(templatePages).eq(pageNum).should('not.have.css', 'background-color', '#37474f')
+    cy.wait(500)
+    cy.get(templatePages).eq(pageNum).click()
+    cy.wait(500)
+    cy.get(templatePages).eq(pageNum).should('have.css', 'background-color', 'rgb(55, 71, 79)')
+    if (pageNum === 0) {
+        cy.get(templateRows).eq(2).contains(managerAnnaS).should('exist')
+    } else if (pageNum === 1) {
+        cy.get(templateRows).eq(2).contains(managerBartG).should('exist')
+    } else if (pageNum === 2) {
+        cy.get(templateRows).eq(2).contains(managerAnnaS).should('exist')
+    } else {
+        cy.get(templateRows).eq(2).contains(managerAdamT).should('exist')
+    }
+})
+
+Cypress.Commands.add("changeRowNum", (displayNum) => {
+    cy.get(selectRecordDisplay, { timeout: timeWait }).select(displayNum).then(() => {
+        if (displayNum === '50') {
+            cy.get(templateRows).should('have.length', 52)
+        } else if (displayNum === '100') {
+            cy.get(templateRows).should('have.length', 101)
+        } else if (displayNum === 'All') {
+            cy.get(templateRows).should('have.length', 101)
+        } else {
+            cy.get(templateRows).should('have.length', 27)
+        }
+    })
+})
+
+Cypress.Commands.add("filterTemplates", (searchQuery, desLength) => {
+    cy.get(templateSearchFilter, {timeout: timeWait}).type(searchQuery)
+    cy.get(templateRows).should('have.length', desLength).its('length').then((size1) => {
+        cy.get(templateSearchFilter, {timeout: timeWait}).clear()
+        cy.get(templateRows).should('have.length', 27)
     })
 })
