@@ -27,7 +27,11 @@ import {
     templatePages,
     templateRows,
     selectRecordDisplay,
-    templateSearchFilter
+    templateSearchFilter,
+    templateEmptySearch,
+    emptySearchText,
+    templateSelectInput,
+    templateSelectAll
 } from './templatesVariables'
 
 Cypress.Commands.add("openLoginPage", () => {
@@ -133,8 +137,68 @@ Cypress.Commands.add("changeRowNum", (displayNum) => {
 
 Cypress.Commands.add("filterTemplates", (searchQuery, desLength) => {
     cy.get(templateSearchFilter, {timeout: timeWait}).type(searchQuery)
-    cy.get(templateRows).should('have.length', desLength).its('length').then((size1) => {
+    if (desLength === 0) {
+        cy.get(templateRows).should('have.length', 2)
+        cy.get(templateEmptySearch).should('have.text', emptySearchText)
         cy.get(templateSearchFilter, {timeout: timeWait}).clear()
-        cy.get(templateRows).should('have.length', 27)
-    })
+    } else {
+        cy.get(templateRows).should('have.length', desLength).then(() => {
+            cy.get(templateSearchFilter, {timeout: timeWait}).clear()
+            cy.get(templateRows).should('have.length', 27)
+        })
+    }
+})
+
+Cypress.Commands.add("selectTemplate", (numValue) => {
+    cy.get(templateSelectInput(numValue)).should('exist').click()
+    cy.get(templateSelectInput(numValue)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')
+})
+
+Cypress.Commands.add("deselectTemplate", (numValue) => {
+    cy.get(templateSelectInput(numValue)).should('exist').click()
+    cy.get(templateSelectInput(numValue)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')
+})
+
+Cypress.Commands.add("selectAll", (pageNum) => {
+    cy.get(templateSelectAll).eq(0).click()
+    cy.wait(1000)
+    if (pageNum === 1) {
+        for(let i = 99; i > 74; i --) {
+            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        }
+    } else if (pageNum === 2) {
+        for(let i = 74; i > 49; i --) {
+            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        }
+    } else if (pageNum === 3) {
+        for(let i = 49; i > 24; i --) {
+            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        }
+    } else {
+        for(let i = 24; i > 0; i --) {
+            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        }
+    }
+})
+
+Cypress.Commands.add("deselectAll", (pageNum) => {
+    cy.get(templateSelectAll).eq(0).click()
+    cy.wait(1000)
+    if (pageNum === 1) {
+        for(let i = 99; i > 74; i --) {
+            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        }
+    } else if (pageNum === 2) {
+        for(let i = 74; i > 49; i --) {
+            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        }
+    } else if (pageNum === 3) {
+        for(let i = 49; i > 24; i --) {
+            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        }
+    } else {
+        for(let i = 24; i > 0; i --) {
+            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        }
+    }
 })
