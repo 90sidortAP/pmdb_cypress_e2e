@@ -39,7 +39,18 @@ import {
     templateDetailChanges,
     project74Creation,
     project74Modification,
-    templateDetailInfo
+    templateDetailInfo,
+    templateSpanDetail,
+    templateDetailSchedule,
+    templateDetailAgree,
+    templateDetailFinancial,
+    templateDetailOthers,
+    templateContHeader,
+    project74HeadInfo,
+    project74HeadSchedule,
+    project74HeadAgree,
+    project74HeadFin,
+    project74HeadOther
 } from './templatesVariables'
 
 Cypress.Commands.add("openLoginPage", () => {
@@ -229,4 +240,13 @@ Cypress.Commands.add('details74check', () => {
     cy.get(templateDetailChanges).eq(0).should('have.text', project74Creation)
     cy.get(templateDetailChanges).eq(1).should('have.text', project74Modification)
     cy.get(templateDetailInfo).should('exist')
+    cy.get(templateContHeader).eq(0).should('have.text', project74HeadInfo)
+    cy.get(templateDetailSchedule).eq(0).click()
+    cy.get(templateContHeader).eq(1).should('have.text', project74HeadSchedule)
+    cy.get(templateDetailAgree).eq(0).click()
+    cy.get(templateContHeader).eq(2).should('have.text', project74HeadAgree)
+    cy.get(templateDetailFinancial).eq(0).click()
+    cy.get(templateContHeader).eq(3).should('have.text', project74HeadFin)
+    cy.get(templateDetailOthers).eq(0).click()
+    cy.get(templateContHeader).eq(4).should('have.text', project74HeadOther)
 })
