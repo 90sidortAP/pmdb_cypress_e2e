@@ -31,7 +31,15 @@ import {
     templateEmptySearch,
     emptySearchText,
     templateSelectInput,
-    templateSelectAll
+    templateSelectAll,
+    templateDetailMenu,
+    templateDetailClose,
+    project74Name,
+    templateDetailProjectName,
+    templateDetailChanges,
+    project74Creation,
+    project74Modification,
+    templateDetailInfo
 } from './templatesVariables'
 
 Cypress.Commands.add("openLoginPage", () => {
@@ -201,4 +209,24 @@ Cypress.Commands.add("deselectAll", (pageNum) => {
             cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
         }
     }
+})
+
+Cypress.Commands.add("openTemplateDetails", (templateNum) => {
+    cy.get(templateSelectInput(templateNum)).parents(templateRows).click()
+    cy.get(templateSelectInput(templateNum)).parents(templateRows).should('have.css', 'background-color', 'rgba(236, 225, 72, 0.5)')
+    cy.get(templateDetailMenu).should('exist')
+})
+
+Cypress.Commands.add("closeTemplateDetails", (templateNum) => {
+    cy.get(templateDetailMenu).should('exist')
+    cy.get(templateDetailClose).click()
+    cy.get(templateDetailMenu).should('exist')
+    cy.get(templateSelectInput(templateNum)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(236, 225, 72, 0.5)')
+})
+
+Cypress.Commands.add('details74check', () => {
+    cy.get(templateDetailProjectName).should('have.text', project74Name)
+    cy.get(templateDetailChanges).eq(0).should('have.text', project74Creation)
+    cy.get(templateDetailChanges).eq(1).should('have.text', project74Modification)
+    cy.get(templateDetailInfo).should('exist')
 })
