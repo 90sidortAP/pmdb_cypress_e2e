@@ -74,7 +74,17 @@ import {
     templateVarField,
     templateMaqValue,
     templateDeliveryValue,
-    templateVarValue
+    templateVarValue,
+    templateFinance,
+    templateCogsField,
+    templateLBudgetField,
+    templateCogsValue,
+    templateLBudgetValue,
+    templateLRefProField,
+    templateLRefProValue,
+    templateLContactField,
+    templateLContactValue,
+    templateOther
 } from './templatesVariables'
 
 Cypress.Commands.add("openLoginPage", () => {
@@ -310,6 +320,26 @@ Cypress.Commands.add("checkTemplateAgree", (templateNum) => {
         cy.get(tepmateSpanField).eq(31).should('have.text', templateDeliveryValue)
         cy.get(templateSpanDetail).eq(40).should('have.text', templateVarField)
         cy.get(tepmateSpanField).eq(40).should('have.text', templateVarValue)
+    }
+})
+
+Cypress.Commands.add("checkTemplateFinance", (templateNum) => {
+    if (templateNum === 99) {
+        cy.get(templateFinance).eq(0).click({ force: true })
+        cy.get(templateSpanDetail).eq(46).should('have.text', templateCogsField)
+        cy.get(tepmateSpanField).eq(46).should('have.text', templateCogsValue)
+        cy.get(templateSpanDetail).eq(49).should('have.text', templateLBudgetField)
+        cy.get(tepmateSpanField).eq(49).should('have.text', templateLBudgetValue)
+    }
+})
+
+Cypress.Commands.add("checkTemplateOther", (templateNum) => {
+    if (templateNum === 99) {
+        cy.get(templateOther).eq(0).click({ force: true })
+        cy.get(templateSpanDetail).eq(50).should('have.text', templateLRefProField)
+        cy.get(tepmateSpanField).eq(50).should('have.text', templateLRefProValue)
+        cy.get(templateSpanDetail).eq(78).should('have.text', templateLContactField)
+        cy.get(tepmateSpanField).eq(78).should('have.text', templateLContactValue)
     }
 })
 

@@ -23,6 +23,8 @@ export const templateShowChange = 'img[alt="history of changes"]'
 export const templateInfo = 'a[id="update-informations-tab"]'
 export const templateSchedule = 'a[id="update-schedule-tab"]'
 export const templateAgreement = 'a[id="update-agreements-tab"]'
+export const templateFinance = 'a[id="update-financial-tab"]'
+export const templateOther = 'a[id="update-others-tab"]'
 // Template 99 details
 export const tepmateSpanField = 'span[class="details__data-value"]'
 export const templateSpanDetail = 'span[class="details__data-key"]'
@@ -71,6 +73,18 @@ export const templateVarValue = '\n      System wcześnie jakiś dość bogactwo
 export const templateMaqField = '\n      \n      Maq'
 export const templateDeliveryField = '\n      \n      Delivery Terms'
 export const templateVarField = '\n      \n      Variation Cost'
+// Template 99 finance
+export const templateCogsValue = '\n      Rano okno medycyna chemiczny. Połowa spadać wybierać potrzebować wymagać.\n    '
+export const templateLBudgetValue = '\n      351 644,26\n    '
+// Template finance fields
+export const templateCogsField = '\n      Cogs'
+export const templateLBudgetField = '\n      License Budget'
+// Template 99 others
+export const templateLRefProValue = '\n      państwo\n    '
+export const templateLContactValue = '\n      Listopad Kościół ściana drużyna pisanie. Taki czoło natychmiast handlowy transport dotyczyć. Ciecz czyn prędkość radio że przeprowadzać współczesny region. Jako ciekawy długo.\n    '
+// Template others fields
+export const templateLRefProField = '\n      Reference Product'
+export const templateLContactField = '\n      Contact Persons'
 // Templates URLs
 export const allTemplatesSite = 'http://127.0.0.1:8000/templates/'
 export const licenseTemplatesSite = 'http://127.0.0.1:8000/templates/licensein/'

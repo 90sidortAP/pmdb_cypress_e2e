@@ -112,6 +112,8 @@ context('PMDB: Login Page Smoke tests', () => {
         cy.checkTemplateInfo(99)
         cy.checkTemplateSchedule(99)
         cy.checkTemplateAgree(99)
+        cy.checkTemplateFinance(99)
+        cy.checkTemplateOther(99)
         cy.closeTemplateDetails(99)
     })
 })
