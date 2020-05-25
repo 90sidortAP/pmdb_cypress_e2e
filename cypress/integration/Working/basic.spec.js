@@ -34,7 +34,11 @@ import {
     strength05,
     strength10,
     nonExistentText1,
-    nonExistentText2
+    nonExistentText2,
+    templateChangelog,
+    templateNoChange,
+    templateFull,
+    templateFullView
 } from '../../support/templatesVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
@@ -106,14 +110,28 @@ context('PMDB: Login Page Smoke tests', () => {
     //     cy.selectAll(2)
     //     cy.deselectAll(2)
     // })
-    it('Should open and close template details', ()=> {
+    // it('Should open and close template details', ()=> {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.openTemplateDetails(99)
+    //     cy.checkTemplateInfo(99)
+    //     cy.checkTemplateSchedule(99)
+    //     cy.checkTemplateAgree(99)
+    //     cy.checkTemplateFinance(99)
+    //     cy.checkTemplateOther(99)
+    //     cy.closeTemplateDetails(99)
+    // })
+    // it('Should show message when no changes in changelog', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.openTemplateDetails(98)
+    //     cy.get(templateChangelog).click()
+    //     cy.get('div').contains(templateNoChange).should('exist')
+    // }) 
+    it('Should be able to open and close fullscreen template view', () => {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
         cy.openTemplateDetails(99)
-        cy.checkTemplateInfo(99)
-        cy.checkTemplateSchedule(99)
-        cy.checkTemplateAgree(99)
-        cy.checkTemplateFinance(99)
-        cy.checkTemplateOther(99)
-        cy.closeTemplateDetails(99)
+        cy.get(templateFullView).click()
+        cy.get('span').contains(templateFull)
+        cy.checkTemplateFullInfo(99)
+        cy.checkTemplateFullSchedule(99)
     })
 })

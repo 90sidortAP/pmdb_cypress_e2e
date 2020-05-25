@@ -25,6 +25,17 @@ export const templateSchedule = 'a[id="update-schedule-tab"]'
 export const templateAgreement = 'a[id="update-agreements-tab"]'
 export const templateFinance = 'a[id="update-financial-tab"]'
 export const templateOther = 'a[id="update-others-tab"]'
+export const templateChangelog = 'img[alt="history of changes"]'
+export const templateFullView = 'img[title="Full screen details"]'
+export const templateInfoF = 'a[id="fullScreenDetailsInformationTab-tab"]'
+export const templateScheduleF = 'a[id="fullScreenDetailsRealisation-tab"]'
+export const templateAgreeF = 'a[id="fullScreenDetailsAgreements-tab"]'
+export const templateFinanceF = 'a[id="fullScreenDetailsFinancial-tab"]'
+export const templateFileF = 'a[id="fullScreenDetailsFiles-tab"]'
+export const templateOtherF = 'a[id="fullScreenDetailsOther-tab"]'
+export const templateTableCell = 'td[class="details-table__cell"]'
+export const templateTScheduleFull = 'div[class="details__data-row"]'
+
 // Template 99 details
 export const tepmateSpanField = 'span[class="details__data-value"]'
 export const templateSpanDetail = 'span[class="details__data-key"]'
@@ -42,6 +53,7 @@ export const templatePriorityValue = '\n      B\n    '
 export const templateAtcOtcValue = '\n      J05C Hiv Antivirals\n    '
 export const templateLicenseValue = '\n      Biomed Lublin\n    '
 export const templateNLicenseValue = '\n      —\n    '
+
 // Template details fields
 export const templateIdField = '\n      \n\n      Id'
 export const templateConfidentField = '\n      \n\n      Confidential'
@@ -57,38 +69,60 @@ export const templatePriorityField = '\n      \n\n      Priority'
 export const templateAtcOtcField = '\n      \n\n      Atc3 Or Otc3'
 export const templateLicenseField = '\n      \n\n      Licensor'
 export const templateNLicenseField = '\n      \n\n      New Licensor'
+
 // Template 99 schedule
 export const templateAgreeValue = '\n      Agreement signed\n      \n        \n        2020-05-21\n        \n      \n      \n        \n        2020-05-22\n        \n      \n    '
 export const templateDsvValue = '\n      Availability in DSV\n      \n        \n        2020-06-15\n        \n      \n      \n        \n        2020-06-01\n        \n      \n    '
 export const templateMexValue = '\n      2020-06-18\n    '
+
 // Template schedule fields
 export const templateAgreeField = 'Agreement signed'
 export const templateDsvField = 'Availability in DSV'
 export const templateMexField = '\n      \n      Mex'
+
 // Template 99 agreement
 export const templateMaqValue = '\n      Wy katastrofa smutek metoda. Siedem należeć wina dziecięcy działać Ziemia ciepły.\nKrólowa ziemniak może obwód. Istota stawiać epoka czynnik liść decyzja.\n    '
 export const templateDeliveryValue = '\n      DAP\n    '
 export const templateVarValue = '\n      System wcześnie jakiś dość bogactwo. 6 kilometr działać czoło operacja Dania polegać. Norma przeciwko poczta podróż lek oprzeć środowisko od.\n    '
+
 // Template agreement fields
 export const templateMaqField = '\n      \n      Maq'
 export const templateDeliveryField = '\n      \n      Delivery Terms'
 export const templateVarField = '\n      \n      Variation Cost'
+
 // Template 99 finance
 export const templateCogsValue = '\n      Rano okno medycyna chemiczny. Połowa spadać wybierać potrzebować wymagać.\n    '
 export const templateLBudgetValue = '\n      351 644,26\n    '
+
 // Template finance fields
 export const templateCogsField = '\n      Cogs'
 export const templateLBudgetField = '\n      License Budget'
+
 // Template 99 others
 export const templateLRefProValue = '\n      państwo\n    '
 export const templateLContactValue = '\n      Listopad Kościół ściana drużyna pisanie. Taki czoło natychmiast handlowy transport dotyczyć. Ciecz czyn prędkość radio że przeprowadzać współczesny region. Jako ciekawy długo.\n    '
+
 // Template others fields
 export const templateLRefProField = '\n      Reference Product'
 export const templateLContactField = '\n      Contact Persons'
+
+// Template Full screen
+export const templateTextId = 'Id'
+export const templateValueId = '99'
+export const templateTextSource = 'Source'
+export const templateValueSource = 'License-in'
+export const templateTextPrior = 'Priority'
+export const templateValuePrior = 'B'
+export const templateTextMApp = 'MA granted date'
+export const templateValueMApp = '\n      MA granted date\n      \n        \n        2020-06-13\n        \n      \n      \n        \n        2020-06-07\n        \n      \n    '
+export const templateTextDex = 'Dex'
+export const templateValueDex = '\n    \n      \n      Dex\n    \n      2020-06-01\n    \n  '
+
 // Templates URLs
 export const allTemplatesSite = 'http://127.0.0.1:8000/templates/'
 export const licenseTemplatesSite = 'http://127.0.0.1:8000/templates/licensein/'
 export const rdTemplatesSite = 'http://127.0.0.1:8000/templates/rd/'
+
 // Templates Other data
 export const formCreamy = 'Cream'
 export const formHerbal = 'Herbal'
@@ -101,11 +135,5 @@ export const strength05 = '0.05mg/ml'
 export const emptySearchText = 'No matching records found'
 export const nonExistentText1 = 'NoQuery1'
 export const nonExistentText2 = 'NoQuery2'
-export const project74Name = '\n      Colecalciferol/Fish/Folic Acid/Glycine Max/Iodine/Vitamin E--Orodispersible tablet\n    —'
-export const project74Creation = '\n    Creation: Adrian Jasiński,\n    2020-05-08, 14:57:27\n  '
-export const project74Modification = '\n    Modification: Adrian Jasiński,\n    2020-05-08, 14:57:27\n  '
-export const project74HeadInfo = '\n                Project informations\n            '
-export const project74HeadSchedule = '\n                Schedule\n            '
-export const project74HeadAgree = '\n                Agreements\n            '
-export const project74HeadFin = '\n                Financial\n            '
-export const project74HeadOther = '\n                Others\n            '
+export const templateNoChange = 'No changes have been made to this project yet.'
+export const templateFull = 'Details of template'

@@ -86,11 +86,6 @@ context('PMDB: Templates Page Full tests', () => {
     //     cy.openTemplateDetails(99)
     //     cy.closeTemplateDetails(99)
     // })
-    // it('Should display Information in template details correctly', ()=> {
-    //     cy.changePage(1)
-    //     cy.openTemplateDetails(74)
-    //     cy.details74check()
-    // })
     it('Should show message when no changes in changelog', () => {
         cy.loginUI1(correctUser, correctPass)
         cy.server()
