@@ -53,6 +53,11 @@ import {
     templateSelPF,
     templateCreate,
     templateInput,
+    template1Prop,
+    templateNewSuccess,
+    templateRows,
+    templateSuccessNfo,
+    templateFirst
 } from '../../support/variables/templatesVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
@@ -172,9 +177,17 @@ context('PMDB: Login Page Smoke tests', () => {
         cy.get(templateSelPro).click()
         cy.get(templateInput).type(managerPiwo)
         cy.get('li').contains(managerPiwo).click()
-        // cy.get(templateSelMol).select("0")
-        // cy.get(templateSelStr).type(templateValueId)
-        // cy.get(templateSelPF).select("0")
-        // cy.get(templateCreate).click()
+        cy.wait(500)
+        cy.get(templateSelMol).click()
+        cy.get(templateInput).type(template1Prop)
+        cy.get('li').contains(template1Prop).click()
+        cy.get(templateSelStr).type(templateValueId)
+        cy.get(templateSelPF).click()
+        cy.get(templateInput).type(formHerbal)
+        cy.get('li').contains(formHerbal).click()
+        cy.get(templateCreate).click()
+        cy.get(templateNewSuccess).should('have.text', templateSuccessNfo)
+        cy.wait(1000)
+        cy.get(templateFirst).eq(0).contains(template1Prop).should('exist')
     })
 })
