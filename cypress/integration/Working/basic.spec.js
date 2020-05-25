@@ -15,13 +15,13 @@ import {
     newFirstName,
     newLastName,
     newEmail
-} from '../../support/loginVariables'
+} from '../../support/variables/loginVariables'
 import {
     timeWait,
     projectSite,
     managerMarcinF,
     managerAleksN
-} from '../../support/generalVariables'
+} from '../../support/variables/generalVariables'
 import {
     allTemplatesSite,
     templatePages,
@@ -39,7 +39,7 @@ import {
     templateNoChange,
     templateFull,
     templateFullView
-} from '../../support/templatesVariables'
+} from '../../support/variables/templatesVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
     beforeEach(() => {
@@ -133,5 +133,7 @@ context('PMDB: Login Page Smoke tests', () => {
         cy.get('span').contains(templateFull)
         cy.checkTemplateFullInfo(99)
         cy.checkTemplateFullSchedule(99)
+        cy.checkTemplateFullAgree(99)
+        cy.checkTemplateFullFin(99)
     })
 })

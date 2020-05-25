@@ -1,13 +1,13 @@
 import {
     correctUser,
     correctPass,
-} from '../../support/loginVariables'
+} from '../../support/variables/loginVariables'
 
 import {
     timeWait,
     managerAnnaS,
     managerBartG
-} from '../../support/generalVariables'
+} from '../../support/variables/generalVariables'
 
 import {
     allTemplatesSite,
@@ -28,7 +28,7 @@ import {
     templateSelectAll,
     templateSelectInput,
     templateShowChange
-} from '../../support/templatesVariables'
+} from '../../support/variables/templatesVariables'
 
 import {
     mockURL1,
