@@ -67,7 +67,14 @@ import {
     templateMexValue,
     templateAgreeField,
     templateDsvField,
-    templateMexField
+    templateMexField,
+    templateAgreement,
+    templateMaqField,
+    templateDeliveryField,
+    templateVarField,
+    templateMaqValue,
+    templateDeliveryValue,
+    templateVarValue
 } from './templatesVariables'
 
 Cypress.Commands.add("openLoginPage", () => {
@@ -274,7 +281,7 @@ Cypress.Commands.add("openTemplateDetails", (templateNum) => {
 
 Cypress.Commands.add("checkTemplateInfo", (templateNum) => {
     if (templateNum === 99) {
-        cy.get(templateInfo).eq(0).click()
+        cy.get(templateInfo).eq(0).click({ force: true })
         cy.get(templateSpanDetail).eq(0).should('have.text', templateIdField)
         cy.get(tepmateSpanField).eq(0).should('have.text', templateIdValue)
         cy.get(templateSpanDetail).eq(11).should('have.text', templateAtcOtcField)
@@ -284,13 +291,25 @@ Cypress.Commands.add("checkTemplateInfo", (templateNum) => {
     }
 })
 
-Cypress.Commands.add("checkTemplatSchedule", (templateNum) => {
+Cypress.Commands.add("checkTemplateSchedule", (templateNum) => {
     if (templateNum === 99) {
         cy.get(templateSchedule).eq(0).click({ force: true })
         cy.get('td').contains(templateAgreeField).parents('tr').should('have.text', templateAgreeValue)
         cy.get('td').contains(templateDsvField).parents('tr').should('have.text', templateDsvValue)        
         cy.get(templateSpanDetail).eq(16).should('have.text', templateMexField)
         cy.get(tepmateSpanField).eq(16).should('have.text', templateMexValue)
+    }
+})
+
+Cypress.Commands.add("checkTemplateAgree", (templateNum) => {
+    if (templateNum === 99) {
+        cy.get(templateAgreement).eq(0).click({ force: true })
+        cy.get(templateSpanDetail).eq(21).should('have.text', templateMaqField)
+        cy.get(tepmateSpanField).eq(21).should('have.text', templateMaqValue)
+        cy.get(templateSpanDetail).eq(31).should('have.text', templateDeliveryField)
+        cy.get(tepmateSpanField).eq(31).should('have.text', templateDeliveryValue)
+        cy.get(templateSpanDetail).eq(40).should('have.text', templateVarField)
+        cy.get(tepmateSpanField).eq(40).should('have.text', templateVarValue)
     }
 })
 
