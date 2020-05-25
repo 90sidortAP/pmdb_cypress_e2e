@@ -17,9 +17,11 @@ import {
 import {
     titleSite,
     shortTime,
-    managerAnnaS,
-    managerBartG,
+    managerMarcinF,
+    managerMaciej,
     managerAdamT,
+    managerAleksN,
+    managerPiwo,
     timeWait
 } from './generalVariables'
 
@@ -123,6 +125,25 @@ Cypress.Commands.add("loginUI", (user, login, site) => {
     })
 })
 
+Cypress.Commands.add("loginUI1", (user, login) => {
+    cy.visit('http://127.0.0.1:8000/')
+    cy.getCookie('csrftoken').then((csrftoken) => {
+        cy.request({
+            method: 'POST',
+            form: true,
+            url: loginURL,
+            body: {
+                csrfmiddlewaretoken: csrftoken.value,
+                username: user,
+                password: login
+            }            
+        }).then((result) => {
+            cy.setCookie('sessionid', (result.allRequestResponses[0]['Response Headers']['set-cookie'][1]).substring(10,42))
+            cy.setCookie('csrftoken', (result.allRequestResponses[0]['Response Headers']['set-cookie'][0]).substring(10,74))
+        })
+    })
+})
+
 Cypress.Commands.add("changePage", (pageNum) => {
     cy.get(templatePages).eq(pageNum).should('not.have.css', 'background-color', '#37474f')
     cy.wait(500)
@@ -130,13 +151,13 @@ Cypress.Commands.add("changePage", (pageNum) => {
     cy.wait(500)
     cy.get(templatePages).eq(pageNum).should('have.css', 'background-color', 'rgb(55, 71, 79)')
     if (pageNum === 0) {
-        cy.get(templateRows).eq(2).contains(managerAnnaS).should('exist')
+        cy.get(templateRows).eq(2).contains(managerMarcinF).should('exist')
     } else if (pageNum === 1) {
-        cy.get(templateRows).eq(2).contains(managerBartG).should('exist')
+        cy.get(templateRows).eq(2).contains(managerMaciej).should('exist')
     } else if (pageNum === 2) {
-        cy.get(templateRows).eq(2).contains(managerAnnaS).should('exist')
+        cy.get(templateRows).eq(2).contains(managerAleksN).should('exist')
     } else {
-        cy.get(templateRows).eq(2).contains(managerAdamT).should('exist')
+        cy.get(templateRows).eq(2).contains(managerPiwo).should('exist')
     }
 })
 
@@ -145,9 +166,9 @@ Cypress.Commands.add("changeRowNum", (displayNum) => {
         if (displayNum === '50') {
             cy.get(templateRows).should('have.length', 52)
         } else if (displayNum === '100') {
-            cy.get(templateRows).should('have.length', 101)
+            cy.get(templateRows).should('have.length', 97)
         } else if (displayNum === 'All') {
-            cy.get(templateRows).should('have.length', 101)
+            cy.get(templateRows).should('have.length', 97)
         } else {
             cy.get(templateRows).should('have.length', 27)
         }
@@ -182,12 +203,16 @@ Cypress.Commands.add("selectAll", (pageNum) => {
     cy.get(templateSelectAll).eq(0).click()
     cy.wait(1000)
     if (pageNum === 1) {
-        for(let i = 99; i > 74; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        for(let i = 99; i > 73; i --) {
+            if (i !== 80) {
+                cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')
+            }        
         }
     } else if (pageNum === 2) {
-        for(let i = 74; i > 49; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        for(let i = 73; i > 47; i --) {
+            if (i !== 60) {
+                cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')
+            }
         }
     } else if (pageNum === 3) {
         for(let i = 49; i > 24; i --) {
@@ -204,12 +229,16 @@ Cypress.Commands.add("deselectAll", (pageNum) => {
     cy.get(templateSelectAll).eq(0).click()
     cy.wait(1000)
     if (pageNum === 1) {
-        for(let i = 99; i > 74; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        for(let i = 99; i > 73; i --) {
+            if (i !== 80) {
+                cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')
+            }        
         }
     } else if (pageNum === 2) {
-        for(let i = 74; i > 49; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+        for(let i = 73; i > 47; i --) {
+            if (i !== 60) {
+                cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+            }
         }
     } else if (pageNum === 3) {
         for(let i = 49; i > 24; i --) {

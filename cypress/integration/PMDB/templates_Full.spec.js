@@ -30,10 +30,15 @@ import {
     templateShowChange
 } from '../../support/templatesVariables'
 
+import {
+    mockURL1,
+    mockData1
+} from '../../support/testMock'
+
 context('PMDB: Templates Page Full tests', () => {
-    beforeEach(() => {
-        cy.loginUI(correctUser, correctPass, allTemplatesSite)
-    })
+    // beforeEach(() => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    // })
     // it('Should be possible to change number of displayed records', () => {
     //     cy.changeRowNum('50')
     //     cy.changeRowNum('100')
@@ -87,8 +92,10 @@ context('PMDB: Templates Page Full tests', () => {
     //     cy.details74check()
     // })
     it('Should show message when no changes in changelog', () => {
-        cy.changePage(1)
-        cy.openTemplateDetails(74)
-        cy.get(templateShowChange).click()
+        cy.loginUI1(correctUser, correctPass)
+        cy.server()
+        cy.route('GET', 'http://127.0.0.1:8000/api/template/datatable/?draw=1&columns[0][data]=0&columns[0][name]=id&columns[0][searchable]=true&columns[0][orderable]=false&columns[0][search][value]=&columns[0][search][regex]=false&columns[1][data]=1&columns[1][name]=project_name&columns[1][searchable]=true&columns[1][orderable]=true&columns[1][search][value]=&columns[1][search][regex]=false&columns[2][data]=2&columns[2][name]=molecule&columns[2][searchable]=true&columns[2][orderable]=true&columns[2][search][value]=&columns[2][search][regex]=false&columns[3][data]=3&columns[3][name]=project_manager&columns[3][searchable]=true&columns[3][orderable]=true&columns[3][search][value]=&columns[3][search][regex]=false&columns[4][data]=4&columns[4][name]=strength&columns[4][searchable]=true&columns[4][orderable]=true&columns[4][search][value]=&columns[4][search][regex]=false&start=0&length=25&search[value]=&search[regex]=false', mockData1)
+        cy.visit(allTemplatesSite)
+        cy.wait(500000)
     })
 })
