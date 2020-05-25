@@ -42,7 +42,6 @@ import {
     project74Creation,
     project74Modification,
     templateDetailInfo,
-    templateSpanDetail,
     templateDetailSchedule,
     templateDetailAgree,
     templateDetailFinancial,
@@ -52,7 +51,23 @@ import {
     project74HeadSchedule,
     project74HeadAgree,
     project74HeadFin,
-    project74HeadOther
+    project74HeadOther,
+    templateSpanDetail,
+    tepmateSpanField,
+    templateIdField,
+    templateIdValue,
+    templateAtcOtcValue,
+    templateNLicenseValue,
+    templateAtcOtcField,
+    templateNLicenseField,
+    templateInfo,
+    templateSchedule,
+    templateAgreeValue,
+    templateDsvValue,
+    templateMexValue,
+    templateAgreeField,
+    templateDsvField,
+    templateMexField
 } from './templatesVariables'
 
 Cypress.Commands.add("openLoginPage", () => {
@@ -255,6 +270,28 @@ Cypress.Commands.add("openTemplateDetails", (templateNum) => {
     cy.get(templateSelectInput(templateNum)).parents(templateRows).click()
     cy.get(templateSelectInput(templateNum)).parents(templateRows).should('have.css', 'background-color', 'rgba(236, 225, 72, 0.5)')
     cy.get(templateDetailMenu).should('exist')
+})
+
+Cypress.Commands.add("checkTemplateInfo", (templateNum) => {
+    if (templateNum === 99) {
+        cy.get(templateInfo).eq(0).click()
+        cy.get(templateSpanDetail).eq(0).should('have.text', templateIdField)
+        cy.get(tepmateSpanField).eq(0).should('have.text', templateIdValue)
+        cy.get(templateSpanDetail).eq(11).should('have.text', templateAtcOtcField)
+        cy.get(tepmateSpanField).eq(11).should('have.text', templateAtcOtcValue)
+        cy.get(templateSpanDetail).eq(13).should('have.text', templateNLicenseField)
+        cy.get(tepmateSpanField).eq(13).should('have.text', templateNLicenseValue)
+    }
+})
+
+Cypress.Commands.add("checkTemplatSchedule", (templateNum) => {
+    if (templateNum === 99) {
+        cy.get(templateSchedule).eq(0).click({ force: true })
+        cy.get('td').contains(templateAgreeField).parents('tr').should('have.text', templateAgreeValue)
+        cy.get('td').contains(templateDsvField).parents('tr').should('have.text', templateDsvValue)        
+        cy.get(templateSpanDetail).eq(16).should('have.text', templateMexField)
+        cy.get(tepmateSpanField).eq(16).should('have.text', templateMexValue)
+    }
 })
 
 Cypress.Commands.add("closeTemplateDetails", (templateNum) => {

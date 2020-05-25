@@ -109,6 +109,8 @@ context('PMDB: Login Page Smoke tests', () => {
     it('Should open and close template details', ()=> {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
         cy.openTemplateDetails(99)
+        cy.checkTemplateInfo(99)
+        cy.checkTemplatSchedule(99)
         cy.closeTemplateDetails(99)
     })
 })
