@@ -38,7 +38,10 @@ import {
     templateChangelog,
     templateNoChange,
     templateFull,
-    templateFullView
+    templateFullView,
+    templateEditDetail,
+    templateSaveEdit,
+    templateEditFull
 } from '../../support/variables/templatesVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
@@ -126,14 +129,28 @@ context('PMDB: Login Page Smoke tests', () => {
     //     cy.get(templateChangelog).click()
     //     cy.get('div').contains(templateNoChange).should('exist')
     // }) 
-    it('Should be able to open and close fullscreen template view', () => {
+    // it('Should be able to open and close fullscreen template view', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.openTemplateDetails(99)
+    //     cy.get(templateFullView).click()
+    //     cy.get('span').contains(templateFull)
+    //     cy.checkTemplateFullInfo(99)
+    //     cy.checkTemplateFullSchedule(99)
+    //     cy.checkTemplateFullAgree(99)
+    //     cy.checkTemplateFullFin(99)
+    //     cy.checkTemplateFullFile(99)
+    // })
+    // it('Should be able to open template edit mode', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.openTemplateDetails(99)
+    //     cy.get(templateEditDetail).eq(0).click()
+    //     cy.get(templateSaveEdit).contains('Save').should('exist')
+    // })
+    it('Should be able to open template edit mode in full view', () => {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
         cy.openTemplateDetails(99)
         cy.get(templateFullView).click()
-        cy.get('span').contains(templateFull)
-        cy.checkTemplateFullInfo(99)
-        cy.checkTemplateFullSchedule(99)
-        cy.checkTemplateFullAgree(99)
-        cy.checkTemplateFullFin(99)
+        cy.get(templateEditFull).eq(1).click()
+        cy.get(templateSaveEdit, { timeout: timeWait }).contains('Save').should('exist')
     })
 })

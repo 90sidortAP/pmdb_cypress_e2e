@@ -35,7 +35,9 @@ export const templateFileF = 'a[id="fullScreenDetailsFiles-tab"]'
 export const templateOtherF = 'a[id="fullScreenDetailsOther-tab"]'
 export const templateTableCell = 'td[class="details-table__cell"]'
 export const templateTScheduleFull = 'div[class="details__data-row"]'
-
+export const templateEditDetail = 'img[title="Edit template"]'
+export const templateEditFull = 'img[title="Edit"]'
+export const templateSaveEdit = 'button[type="Submit"]'
 // Template 99 details
 export const tepmateSpanField = 'span[class="details__data-value"]'
 export const templateSpanDetail = 'span[class="details__data-key"]'
