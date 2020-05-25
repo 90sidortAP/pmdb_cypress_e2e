@@ -20,7 +20,8 @@ import {
     timeWait,
     projectSite,
     managerMarcinF,
-    managerAleksN
+    managerAleksN,
+    managerPiwo
 } from '../../support/variables/generalVariables'
 import {
     allTemplatesSite,
@@ -41,7 +42,17 @@ import {
     templateFullView,
     templateEditDetail,
     templateSaveEdit,
-    templateEditFull
+    templateEditFull,
+    templateAddNew,
+    templateDetailMenu,
+    templateSelSource,
+    templateSelPro,
+    templateSelMol,
+    templateSelStr,
+    templateValueId,
+    templateSelPF,
+    templateCreate,
+    templateInput,
 } from '../../support/variables/templatesVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
@@ -146,11 +157,24 @@ context('PMDB: Login Page Smoke tests', () => {
     //     cy.get(templateEditDetail).eq(0).click()
     //     cy.get(templateSaveEdit).contains('Save').should('exist')
     // })
-    it('Should be able to open template edit mode in full view', () => {
+    // it('Should be able to open template edit mode in full view', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.openTemplateDetails(99)
+    //     cy.get(templateFullView).click()
+    //     cy.get(templateEditFull).eq(1).click()
+    //     cy.get(templateSaveEdit, { timeout: timeWait }).contains('Save').should('exist')
+    // })
+    it('Should be possible to create new template with mandatory data', () => {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
-        cy.openTemplateDetails(99)
-        cy.get(templateFullView).click()
-        cy.get(templateEditFull).eq(1).click()
-        cy.get(templateSaveEdit, { timeout: timeWait }).contains('Save').should('exist')
+        cy.get(templateAddNew).click()
+        cy.get(templateDetailMenu).should('exist')
+        cy.get(templateSelSource).eq(0).select("License-in")
+        cy.get(templateSelPro).click()
+        cy.get(templateInput).type(managerPiwo)
+        cy.get('li').contains(managerPiwo).click()
+        // cy.get(templateSelMol).select("0")
+        // cy.get(templateSelStr).type(templateValueId)
+        // cy.get(templateSelPF).select("0")
+        // cy.get(templateCreate).click()
     })
 })
