@@ -57,7 +57,15 @@ import {
     templateNewSuccess,
     templateRows,
     templateSuccessNfo,
-    templateFirst
+    templateFirst,
+    templateNeurology,
+    templateSelTA,
+    templateSelPrio,
+    templateSelATC,
+    templateAntimeta,
+    templateInputApi,
+    templateSuccessUpd,
+    tepmateSpanField
 } from '../../support/variables/templatesVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
@@ -169,25 +177,70 @@ context('PMDB: Login Page Smoke tests', () => {
     //     cy.get(templateEditFull).eq(1).click()
     //     cy.get(templateSaveEdit, { timeout: timeWait }).contains('Save').should('exist')
     // })
-    it('Should be possible to create new template with mandatory data', () => {
+    // it('Should be possible to create new template with mandatory data', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.get(templateAddNew).click()
+    //     cy.get(templateDetailMenu).should('exist')
+    //     cy.get(templateSelSource).eq(0).select("License-in")
+    //     cy.get(templateSelPro).click()
+    //     cy.get(templateInput).type(managerPiwo)
+    //     cy.get('li').contains(managerPiwo).click()
+    //     cy.wait(500)
+    //     cy.get(templateSelMol).click()
+    //     cy.get(templateInput).type(template1Prop)
+    //     cy.get('li').contains(template1Prop).click()
+    //     cy.get(templateSelStr).type(templateValueId)
+    //     cy.get(templateSelPF).click()
+    //     cy.get(templateInput).type(formHerbal)
+    //     cy.get('li').contains(formHerbal).click()
+    //     cy.get(templateCreate).click()
+    //     cy.get(templateNewSuccess).should('have.text', templateSuccessNfo)
+    //     cy.wait(1000)
+    //     cy.get(templateFirst).eq(0).contains(template1Prop).should('exist')
+    // })
+    // it('Should be possible to create new template with all data', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.get(templateAddNew).click()
+    //     cy.get(templateDetailMenu).should('exist')
+    //     cy.get(templateSelSource).eq(0).select("License-in")
+
+    //     cy.get(templateSelPro).click()
+    //     cy.get(templateInput).type(managerPiwo)
+    //     cy.get('li').contains(managerPiwo).click()
+    //     cy.wait(500)
+    //     cy.get(templateSelMol).click()
+    //     cy.get(templateInput).type(template1Prop)
+    //     cy.get('li').contains(template1Prop).click()
+
+    //     cy.get(templateSelStr).type(templateValueId)
+
+    //     cy.get(templateSelPF).click()
+    //     cy.get(templateInput).type(formHerbal)
+    //     cy.get('li').contains(formHerbal).click()
+
+    //     cy.get(templateSelTA).click()
+    //     cy.get(templateInput).type(templateNeurology)
+    //     cy.get('li').contains(templateNeurology).click()
+
+    //     cy.get(templateSelATC).click()
+    //     cy.get(templateInput).type(templateAntimeta)
+    //     cy.get('li').contains(templateAntimeta).click()
+
+
+    //     cy.get(templateCreate).click()
+    //     cy.get(templateNewSuccess).should('have.text', templateSuccessNfo)
+    //     cy.wait(1000)
+    //     cy.get(templateFirst).eq(0).contains(template1Prop).should('exist')
+    // })
+    it('Should be possible to make changes to an existing template', () => {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
-        cy.get(templateAddNew).click()
-        cy.get(templateDetailMenu).should('exist')
-        cy.get(templateSelSource).eq(0).select("License-in")
-        cy.get(templateSelPro).click()
-        cy.get(templateInput).type(managerPiwo)
-        cy.get('li').contains(managerPiwo).click()
-        cy.wait(500)
-        cy.get(templateSelMol).click()
-        cy.get(templateInput).type(template1Prop)
-        cy.get('li').contains(template1Prop).click()
-        cy.get(templateSelStr).type(templateValueId)
-        cy.get(templateSelPF).click()
-        cy.get(templateInput).type(formHerbal)
-        cy.get('li').contains(formHerbal).click()
-        cy.get(templateCreate).click()
-        cy.get(templateNewSuccess).should('have.text', templateSuccessNfo)
-        cy.wait(1000)
-        cy.get(templateFirst).eq(0).contains(template1Prop).should('exist')
+        cy.openTemplateDetails(97)
+        cy.get(templateEditDetail).eq(0).click()
+        cy.get(templateSaveEdit).contains('Save').should('exist')
+        cy.get(templateInputApi).clear()
+        cy.get(templateInputApi).type(templateValueId)
+        cy.get(templateSaveEdit).contains('Save').click()
+        cy.get(templateNewSuccess).should('have.text',templateSuccessUpd)
+        cy.get(tepmateSpanField).eq(4).contains(templateValueId)
     })
 })
