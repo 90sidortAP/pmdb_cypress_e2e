@@ -75,7 +75,9 @@ import {
     templateAgreeNote,
     templateTScheduleFull,
     templateFinance,
-    templatePBudget
+    templatePBudget,
+    templateRefInput,
+    templateOther
 } from '../../support/variables/templatesVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
@@ -402,29 +404,83 @@ context('PMDB: Login Page Smoke tests', () => {
     //     cy.get(tepmateSpanField).eq(25).should('have.text', '\n      2016\n    ')
     //     cy.get(tepmateSpanField).eq(30).should('have.text', '\n      10.0\n    ')
     // })
-    it('Should be possible to save changest made to template Finance section', () => {
+    // it('Should be possible to save changest made to template Finance section', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.getCookie('csrftoken').then((csrftoken) => {
+    //         cy.request({
+    //             method: 'POST',
+    //             form: true,
+    //             url: 'http://127.0.0.1:8000/97/template-financial/update/',
+    //             body: {
+    //                 csrfmiddlewaretoken: csrftoken.value,
+    //                 cogs: "<p>Polak zaczynać dziewięć tyle. Matka kwiat małpa. Użytkownik sen słaby czapka handel. Wyścig lampa świeca we codziennie łagodny radio.</p>",
+    //                 project_budget: "169636.27",
+    //                 project_budget_currency: "PLN",
+    //                 license_budget: "571266.37",
+    //             }
+    //         })
+    //     })
+    //     cy.openTemplateDetails(97)
+    //     cy.get(templateFinance).eq(0).click({ force: true })
+    //     cy.get(templateEditDetail).eq(0).click()
+    //     cy.get(templateSaveEdit).contains('Save').should('exist')
+    //     cy.get(templatePBudget, {timeout: timeWait }).clear().type(templateValueId)
+    //     cy.get('button[type="Submit"]').eq(3).click({ force: true })
+    //     cy.get(templateNewSuccess, { timeout: timeWait }).should('have.text',templateSuccessUpd)
+    //     cy.get(tepmateSpanField).eq(47).should('have.text', '\n      99,00\n    ')
+    // })
+    it('Should be possible to save changest made to template Others section', () => {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
         cy.getCookie('csrftoken').then((csrftoken) => {
             cy.request({
                 method: 'POST',
                 form: true,
-                url: 'http://127.0.0.1:8000/97/template-financial/update/',
+                url: 'http://127.0.0.1:8000/97/template-others/update/',
                 body: {
                     csrfmiddlewaretoken: csrftoken.value,
-                    cogs: "<p>Polak zaczynać dziewięć tyle. Matka kwiat małpa. Użytkownik sen słaby czapka handel. Wyścig lampa świeca we codziennie łagodny radio.</p>",
-                    project_budget: "169636.27",
-                    project_budget_currency: "PLN",
-                    license_budget: "571266.37",
+                    reference_product: "wola",
+                    pack_type: "237",
+                    shelf_life: "0",
+                    batch_control_site: "<p>Zawsze wielki muzyka elektryczny choć. Prawdziwy mleko kształt szeroki. Żywy tłumaczenie płynąć wieczór praktyka sposób.</p>",
+                    ip_audit_date: "2020-06-05",
+                    ip_audit_status: "2",
+                    dossier_audit_date: "2020-06-12",
+                    dossier_audit_status: "2",
+                    clinical_audit_status: "3",
+                    post_audit_recommedation: "1",
+                    justification: "<p>Czyli obiad pod pomieszczenie Azja. Lot Ukraina angielski umierać rejon cisza wniosek.</p>",
+                    samples_needed: "True",
+                    analytical_method_transfer: "" ,
+                    dossier_format: "56",
+                    registration_strategy: "93",
+                    registration_strategy_justification: "<p>Jedyny rasa zdolny błoto stworzyć siedzieć. Teraz zając ta kochać alkohol. Życie godzina martwy dodatek. Morze obwód etap daleki wesoły oddawać.</p>",
+                    intended_indication: "<p>Czyli obiad pod pomieszczenie Azja. Lot Ukraina angielski umierać rejon cisza wniosek.</p>",
+                    peadiatric_indications: "False",
+                    orphan_esignation: "False",
+                    puma: "True",
+                    responsible_for_registration: "38",
+                    referent_mah: "przyrząd",
+                    date_of_first_registration_of_reference_product: "2020-05-31",
+                    reference_product_procedure: "95",
+                    reference_product_indications: "znów",
+                    reference_product_posology: "Holandia",
+                    maximum_daily_dose: "mieszkanka",
+                    contact_persons: "<p>Wybrzeże r. wybierać kultura poczta teraz ogół zawodnik. Składać Się tajemnica skład obóz. Drużyna istnienie niebezpieczeństwo umożliwiać oczekiwać.</p>",
+                    licensor_contact: "<p>Rzucić aktor zmęczony przyszłość kilka narząd. Dostać zwłaszcza także jutro kolacja po prostu pojazd. Patrzeć pole pies 2 zgoda umiejętność.</p>"
                 }
             })
         })
         cy.openTemplateDetails(97)
-        cy.get(templateFinance).eq(0).click({ force: true })
+        cy.get(templateOther).eq(0).click({ force: true })
         cy.get(templateEditDetail).eq(0).click()
         cy.get(templateSaveEdit).contains('Save').should('exist')
-        cy.get(templatePBudget, {timeout: timeWait }).clear().type(templateValueId)
-        cy.get('button[type="Submit"]').eq(3).click({ force: true })
+        cy.get(templateRefInput, {timeout: timeWait }).clear().type(templateValueId)
+        cy.window().then((win) => {
+            win.document.querySelectorAll('div[aria-label="Rich Text Editor, main"] p')[5].textContent = 'changeTest'
+        })
+        cy.get('button[type="Submit"]').eq(4).click({ force: true })
         cy.get(templateNewSuccess, { timeout: timeWait }).should('have.text',templateSuccessUpd)
-        cy.get(tepmateSpanField).eq(47).should('have.text', '\n      99,00\n    ')
+        cy.get(tepmateSpanField).eq(50).should('have.text', '\n      99\n    ')
+        cy.get(tepmateSpanField).eq(79).should('have.text', '\n      changeTest\n    ')
     })
 })

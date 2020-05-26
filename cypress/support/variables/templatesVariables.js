@@ -57,6 +57,7 @@ export const templateIPCX = 'div[aria-label="Rich Text Editor, main"]'
 export const templateAgreeNote = 'input[id="id_notice_period"]'
 export const templateSuppPeriod = 'input[id="id_supply_period"]'
 export const templatePBudget = 'input[id="id_project_budget"]'
+export const templateRefInput = 'input[id="id_reference_product"]'
 
 // Template 99 details
 export const tepmateSpanField = 'span[class="details__data-value"]'
