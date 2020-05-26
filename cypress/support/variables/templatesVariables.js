@@ -58,6 +58,11 @@ export const templateAgreeNote = 'input[id="id_notice_period"]'
 export const templateSuppPeriod = 'input[id="id_supply_period"]'
 export const templatePBudget = 'input[id="id_project_budget"]'
 export const templateRefInput = 'input[id="id_reference_product"]'
+export const templatePNHeader = 'th[aria-label=" Project Name : activate to sort column ascending"]'
+export const templateMHeader = 'th[aria-label=" Molecule : activate to sort column ascending"]'
+export const templatePMHeader = 'th[aria-label=" Project Manager : activate to sort column ascending"]'
+export const templatePSHeader = 'th[aria-label=" Strength : activate to sort column ascending"]'
+export const templateTCell = 'td[class=" table__cell"]'
 
 // Template 99 details
 export const tepmateSpanField = 'span[class="details__data-value"]'
