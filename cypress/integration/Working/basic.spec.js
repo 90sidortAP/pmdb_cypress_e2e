@@ -232,15 +232,59 @@ context('PMDB: Login Page Smoke tests', () => {
     //     cy.wait(1000)
     //     cy.get(templateFirst).eq(0).contains(template1Prop).should('exist')
     // })
-    it('Should be possible to make changes to an existing template', () => {
+    // it('Should be possible to make changes to an existing template', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.openTemplateDetails(97)
+    //     cy.get(templateEditDetail).eq(0).click()
+    //     cy.get(templateSaveEdit).contains('Save').should('exist')
+    //     cy.get(templateInputApi).clear()
+    //     cy.get(templateInputApi).type(templateValueId)
+    //     cy.get(templateSaveEdit).contains('Save').click()
+    //     cy.get(templateNewSuccess).should('have.text',templateSuccessUpd)
+    //     cy.get(tepmateSpanField).eq(4).contains(templateValueId)
+    //     cy.wait(1000)
+    //     cy.getCookie('csrftoken').then((csrftoken) => {
+    //         cy.request({
+    //             method: 'POST',
+    //             form: true,
+    //             url: 'http://127.0.0.1:8000/97/template-informations/update/',
+    //             body: {
+    //                 csrfmiddlewaretoken: csrftoken.value,
+    //                 molecule: "6936",
+    //                 api: "powod",
+    //                 pharmaceutical_form: "2391",
+    //                 strength: "20mg",
+    //                 source: "0",
+    //                 project_manager: "13",
+    //                 therapeutical_area: "474",
+    //                 priority: "2",
+    //                 atc3_or_otc3: "5966",
+    //                 licensor: "3031",
+    //                 new_licensor: "True"
+    //             }
+    //         })
+    //     })
+    // })
+    it('Should be impossible to create new template without mandatory data', () => {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
-        cy.openTemplateDetails(97)
-        cy.get(templateEditDetail).eq(0).click()
-        cy.get(templateSaveEdit).contains('Save').should('exist')
-        cy.get(templateInputApi).clear()
-        cy.get(templateInputApi).type(templateValueId)
-        cy.get(templateSaveEdit).contains('Save').click()
-        cy.get(templateNewSuccess).should('have.text',templateSuccessUpd)
-        cy.get(tepmateSpanField).eq(4).contains(templateValueId)
+        cy.get(templateAddNew).click()
+        cy.get(templateDetailMenu).should('exist')
+        cy.get(templateCreate).click()
+        cy.get(templateSelSource).eq(0)
+            .should('exist')
+            .select("License-in")
+        cy.get(templateCreate).click()
+        cy.get(templateSelPro).should('exist').click()   
+        cy.get(templateInput).type(managerPiwo)
+        cy.get('li').contains(managerPiwo).click()
+        cy.wait(500)
+        cy.get(templateCreate).click()
+        cy.get(templateSelMol).should('exist').click()
+        cy.get(templateInput).type(template1Prop)
+        cy.get('li').contains(template1Prop).click()
+        cy.get(templateCreate).click()
+        cy.get(templateSelStr).should('exist').type(templateValueId)
+        cy.get(templateCreate).click()
+        cy.get(templateSelPF).should('exist').click()
     })
 })
