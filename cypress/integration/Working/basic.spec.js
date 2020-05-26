@@ -69,7 +69,8 @@ import {
     templateSchedule,
     templatePMBApp,
     templateIPCom,
-    templateIPCX
+    templateIPCX,
+    templateAgreement
 } from '../../support/variables/templatesVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
@@ -303,13 +304,89 @@ context('PMDB: Login Page Smoke tests', () => {
     // })
     it('Should be possible to save changest made to template Schedule section', () => {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
+        cy.getCookie('csrftoken').then((csrftoken) => {
+            cy.request({
+                method: 'POST',
+                form: true,
+                url: 'http://127.0.0.1:8000/97/template-schedule/update/',
+                body: {
+                    csrfmiddlewaretoken: csrftoken.value,
+                    pmb_approval: "2020-05-29",
+                    pmb_approval_current: "2020-06-17",
+                    agreement_signature: "2020-06-06",
+                    agreement_signature_current: "2020-06-12",
+                    dossier_ready: "2020-06-16",
+                    dossier_ready_current: "2020-05-27",
+                    dossier_submitted: "2020-06-05",
+                    dossier_submitted_current: "2020-05-22",
+                    ma_granted: "2020-06-06",
+                    ma_granted_current: "2020-05-23",
+                    mockup_approved: "2020-06-08",
+                    mockup_approved_current: "2020-06-01",
+                    order_confirmed: "2020-05-30",
+                    order_confirmed_current: "2020-05-24",
+                    availability_in_dsv: "2020-05-26",
+                    availability_in_dsv_current: "2020-03-04",
+                    availability_for_sale: "2020-06-18",
+                    availability_for_sale_current: "2020-06-05",
+                    spc_expiry: "2020-01-15",
+                    dex: "2020-06-07",
+                    mex: "2020-05-24",
+                    ip_status_comment: "<p>Okazja fala pływać przyszłość wielkość reakcja wielki. Dzień tani jądro potrzebny głęboki. Handlowy artystyczny ładny nieszczęście. Krok korzystać wpaść ani dolny operacja domowy.</p>"
+                }
+            })
+        })
         cy.openTemplateDetails(97)
         cy.get(templateSchedule).eq(0).click({ force: true })
         cy.get(templateEditDetail).eq(0).click()
         cy.get(templateSaveEdit).contains('Save').should('exist')
         cy.get(templatePMBApp, { timeout : timeWait }).clear().type('2020-05-30')
         cy.wait(500)
-        cy.get(templateIPCX).click()
-        cy.get(templateIPCom).clear({ force: true }).type('a', { force : true })
+        cy.window().then((win) => {
+            win.document.querySelector('div[aria-label="Rich Text Editor, main"] p').textContent='changeTest'
+        })
+        cy.wait(500)
+        cy.get(templateIPCX).contains('changeTest')
+        cy.get('button[type="Submit"]').eq(1).click({ force: true })
+        cy.get(templateNewSuccess, { timeout: timeWait }).should('have.text',templateSuccessUpd)
+        cy.get('td').contains('PMB approval Date').parents('tr').should('have.text', '\n      PMB approval Date\n      \n        \n        2020-05-30\n        \n      \n      \n        \n        2020-06-17\n        \n      \n    ')
+        cy.get('p').contains('changeTest')
     })
+    // it('Should be possible to save changest made to template Agreement section', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.getCookie('csrftoken').then((csrftoken) => {
+    //         cy.request({
+    //             method: 'POST',
+    //             form: true,
+    //             url: 'http://127.0.0.1:8000/97/template-agreements/update/',
+    //             body: {
+    //                 csrfmiddlewaretoken: csrftoken.value,
+    //                 agreement_type: "75",
+    //                 batch_size: "<p>Lotnisko nos krzyż. Czoło umysł treść wyrażenie dużo dwa. Dać wiadomość dokonywać pociąg wywoływać bok wąski. Do czyn kłaść znaleźć głód częściowo kultura. Pieśń wciąż dach brzeg jaki mysz dziób.</p>",
+    //                 moq: "<p>3300</p>",
+    //                 maq: "<p>Ciemność Białoruś duży tytuł piętnaście palec potrzebny. Wiosna ozdobny nazywać się wódka trawa szkło. Umieszczać a badać spotkać ktoś postępować naukowy nadmierny.</p>",
+    //                 reconciliation_comment: "<p>Wrogi moneta święty lokalny by dym kilka. 1 przyrząd działalność ucho wywodzić się postawa początek.</p>",
+    //                 lead_time: "<p>Tytoń wolno komórka własny dotyczyć wiele. Kosz powstanie deszcz pisarz. Kobieta wygrać krzew kot przedmiot przygotowywać.</p>",
+    //                 automatic_prolongation: "False",
+    //                 agreement_expiry: "<p>Plemię punkt podział nazwisko fizyka mi. Ból autobus wracać umiejętność mężczyzna historia pochodzenie.</p>",
+    //                 agreement_expiry_date: "2020-06-15",
+    //                 delivery_terms: "207",
+    //                 manufacturing_site: "<p>Pole kolorowy fotografia znaleźć otwarty szybki. Pierwiastek gość ludowy zabić istota szeroki moralny. Bydło noc włos u utrzymywać. Partia wśród program tłum towar krzesło przejście.</p>",
+    //                 batch_release_site: "<p>Już przenosić silnik sieć masa tamten nagle. Zwłaszcza chęć zawód środowisko wojenny Austria pełny Afryka. Nasz jeden inny.</p>",
+    //                 rolling_forecast: "<p>Wynikać delikatny ochrona. Naród wojskowy do trwały szukać idea islam. Obraz stracić wąski czytać. Wszystek umieścić armia samochodowy. Prawda połączenie śpiewać Węgry serce tutaj.</p>",
+    //                 inventory_level: "<p>Skład więcej grunt przykład prowincja uśmiech partia narząd. Ciągnąć pająk chrześcijaństwo robota. Południowy niebieski mapa pustynia pewien.</p>",
+    //                 agreement_number_eou: "powód",
+    //                 variation_cost: "<p>Czyjś poniedziałek zbiornik. Przedsiębiorstwo szacunek życie samolot rodzic itp.. Zwykle kolano mężczyzna sprzęt otworzyć Anglia.</p>",
+    //                 additional_costs: "<p>Okazja fala pływać przyszłość wielkość reakcja wielki. Dzień tani jądro potrzebny głęboki. Handlowy artystyczny ładny nieszczęście. Krok korzystać wpaść ani dolny operacja domowy.</p>",
+    //                 competitive_product_actions: "<p>On okolica pan obowiązek niż zwycięstwo. Kontrola koncern sos szpital myśl sztuczny planować. Zamknąć rodzic trzeci kraina drugi uciekać. Płot stworzyć odważny. Postępowanie zakończyć fabryka.</p>",
+    //                 competitive_product_definition: "<p>Siebie pół bogaty. Niemcy sprzedawać pięćdziesiąt zainteresowanie mięso. Nastrój budynek starać się grzech angielski kultura. Ciepło kość krew.</p>",
+    //                 comments: "<p>Kino obok wola sieć strata bilet operacja. Armia pomarańczowy mięsień 4 jeszcze arabski zdrowie. Pomarańczowy pierś ciężki wczoraj traktować. Prezydent spadać otwierać.</p>",
+    //             }
+    //         })
+    //     })
+    //     cy.openTemplateDetails(97)
+    //     cy.get(templateAgreement).eq(0).click({ force: true })
+    //     cy.get(templateEditDetail).eq(0).click()
+    //     cy.get(templateSaveEdit).contains('Save').should('exist')
+    // })
 })
