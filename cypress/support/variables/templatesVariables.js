@@ -54,6 +54,8 @@ export const templateFirst = 'div[class="project_name_api"]'
 export const templateInputApi = 'input[id="id_api"]'
 export const templatePMBApp = 'input[id="id_pmb_approval"]'
 export const templateIPCX = 'div[aria-label="Rich Text Editor, main"]'
+export const templateAgreeNote = 'input[id="id_notice_period"]'
+export const templateSuppPeriod = 'input[id="id_supply_period"]'
 
 // Template 99 details
 export const tepmateSpanField = 'span[class="details__data-value"]'
