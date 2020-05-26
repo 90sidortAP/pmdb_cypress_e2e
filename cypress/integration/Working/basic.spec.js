@@ -65,7 +65,11 @@ import {
     templateAntimeta,
     templateInputApi,
     templateSuccessUpd,
-    tepmateSpanField
+    tepmateSpanField,
+    templateSchedule,
+    templatePMBApp,
+    templateIPCom,
+    templateIPCX
 } from '../../support/variables/templatesVariables'
 
 context('PMDB: Login Page Smoke tests', () => {
@@ -265,26 +269,47 @@ context('PMDB: Login Page Smoke tests', () => {
     //         })
     //     })
     // })
-    it('Should be impossible to create new template without mandatory data', () => {
+    // it('Should be impossible to create new template without mandatory data', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.get(templateAddNew).click()
+    //     cy.get(templateDetailMenu).should('exist')
+    //     cy.get(templateCreate).click()
+    //     cy.get(templateSelSource).eq(0)
+    //         .should('exist')
+    //         .select("License-in")
+    //     cy.get(templateCreate).click()
+    //     cy.get(templateSelPro).should('exist').click()   
+    //     cy.get(templateInput).type(managerPiwo)
+    //     cy.get('li').contains(managerPiwo).click()
+    //     cy.wait(500)
+    //     cy.get(templateCreate).click()
+    //     cy.get(templateSelMol).should('exist').click()
+    //     cy.get(templateInput).type(template1Prop)
+    //     cy.get('li').contains(template1Prop).click()
+    //     cy.get(templateCreate).click()
+    //     cy.get(templateSelStr).should('exist').type(templateValueId)
+    //     cy.get(templateCreate).click()
+    //     cy.get(templateSelPF).should('exist').click()
+    // })
+    // it('Should be impossible to save edited template wit deleted mandatory fields', () => {
+    //     cy.loginUI(correctUser, correctPass, allTemplatesSite)
+    //     cy.openTemplateDetails(97)
+    //     cy.get(templateEditDetail).eq(0).click()
+    //     cy.get(templateSaveEdit).contains('Save').should('exist')
+    //     cy.get(templateSelStr).clear({ force: true })
+    //     cy.get(templateSaveEdit).contains('Save').click()
+    //     cy.wait(1000)
+    //     cy.get(templateSelStr).should('exist')
+    // })
+    it('Should be possible to save changest made to template Schedule section', () => {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
-        cy.get(templateAddNew).click()
-        cy.get(templateDetailMenu).should('exist')
-        cy.get(templateCreate).click()
-        cy.get(templateSelSource).eq(0)
-            .should('exist')
-            .select("License-in")
-        cy.get(templateCreate).click()
-        cy.get(templateSelPro).should('exist').click()   
-        cy.get(templateInput).type(managerPiwo)
-        cy.get('li').contains(managerPiwo).click()
+        cy.openTemplateDetails(97)
+        cy.get(templateSchedule).eq(0).click({ force: true })
+        cy.get(templateEditDetail).eq(0).click()
+        cy.get(templateSaveEdit).contains('Save').should('exist')
+        cy.get(templatePMBApp, { timeout : timeWait }).clear().type('2020-05-30')
         cy.wait(500)
-        cy.get(templateCreate).click()
-        cy.get(templateSelMol).should('exist').click()
-        cy.get(templateInput).type(template1Prop)
-        cy.get('li').contains(template1Prop).click()
-        cy.get(templateCreate).click()
-        cy.get(templateSelStr).should('exist').type(templateValueId)
-        cy.get(templateCreate).click()
-        cy.get(templateSelPF).should('exist').click()
+        cy.get(templateIPCX).click()
+        cy.get(templateIPCom).clear({ force: true }).type('a', { force : true })
     })
 })

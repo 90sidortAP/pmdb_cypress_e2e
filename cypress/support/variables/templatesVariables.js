@@ -52,6 +52,9 @@ export const templateInput = 'input[class="select2-search__field"]'
 export const templateNewSuccess = 'span[class="alert-message"]' 
 export const templateFirst = 'div[class="project_name_api"]'
 export const templateInputApi = 'input[id="id_api"]'
+export const templatePMBApp = 'input[id="id_pmb_approval"]'
+export const templateIPCom = 'textarea[id="id_ip_status_comment"]'
+export const templateIPCX = 'div[aria-label="Rich Text Editor, main"]'
 
 // Template 99 details
 export const tepmateSpanField = 'span[class="details__data-value"]'
