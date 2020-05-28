@@ -76,15 +76,17 @@ import {
     templateValuePBC,
     templateFileF,
     templateTextFile,
-    checkTemplateId
+    checkTemplateId,
+    templateSelectedColor,
+    templatedClickColor
 } from '../variables/templatesVariables'
 
 Cypress.Commands.add("changePage", (pageNum) => {
-    cy.get(templatePages).eq(pageNum).should('not.have.css', 'background-color', '#37474f')
+    cy.get(templatePages, { timeout: timeWait }).eq(pageNum).should('not.have.css', 'background-color', '#37474f')
     cy.wait(500)
-    cy.get(templatePages).eq(pageNum).click()
+    cy.get(templatePages, { timeout: timeWait }).eq(pageNum).click()
     cy.wait(500)
-    cy.get(templatePages).eq(pageNum).should('have.css', 'background-color', 'rgb(55, 71, 79)')
+    cy.get(templatePages, { timeout: timeWait }).eq(pageNum).should('have.css', 'background-color', 'rgb(55, 71, 79)')
     if (pageNum === 0) {
         cy.get(templateRows).eq(2).contains(managerMarcinF).should('exist')
     } else if (pageNum === 1) {
@@ -127,12 +129,12 @@ Cypress.Commands.add("filterTemplates", (searchQuery, desLength) => {
 
 Cypress.Commands.add("selectTemplate", (numValue) => {
     cy.get(templateSelectInput(numValue)).should('exist').click()
-    cy.get(templateSelectInput(numValue)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')
+    cy.get(templateSelectInput(numValue)).parents(templateRows).should('have.css', 'background-color', templateSelectedColor)
 })
 
 Cypress.Commands.add("deselectTemplate", (numValue) => {
     cy.get(templateSelectInput(numValue)).should('exist').click()
-    cy.get(templateSelectInput(numValue)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')
+    cy.get(templateSelectInput(numValue)).parents(templateRows).should('not.have.css', 'background-color', templateSelectedColor)
 })
 
 Cypress.Commands.add("selectAll", (pageNum) => {
@@ -141,22 +143,22 @@ Cypress.Commands.add("selectAll", (pageNum) => {
     if (pageNum === 1) {
         for(let i = 99; i > 73; i --) {
             if (i !== 80) {
-                cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')
+                cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', templateSelectedColor)
             }        
         }
     } else if (pageNum === 2) {
         for(let i = 73; i > 47; i --) {
             if (i !== 60) {
-                cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')
+                cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', templateSelectedColor)
             }
         }
     } else if (pageNum === 3) {
         for(let i = 49; i > 24; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', templateSelectedColor)        
         }
     } else {
         for(let i = 24; i > 0; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', templateSelectedColor)        
         }
     }
 })
@@ -167,29 +169,29 @@ Cypress.Commands.add("deselectAll", (pageNum) => {
     if (pageNum === 1) {
         for(let i = 99; i > 73; i --) {
             if (i !== 80) {
-                cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')
+                cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', templateSelectedColor)
             }        
         }
     } else if (pageNum === 2) {
         for(let i = 73; i > 47; i --) {
             if (i !== 60) {
-                cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+                cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', templateSelectedColor)        
             }
         }
     } else if (pageNum === 3) {
         for(let i = 49; i > 24; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', templateSelectedColor)        
         }
     } else {
         for(let i = 24; i > 0; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(73, 196, 161, 0.5)')        
+            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', templateSelectedColor)        
         }
     }
 })
 
 Cypress.Commands.add("openTemplateDetails", (templateNum) => {
     cy.get(templateSelectInput(templateNum)).parents(templateRows).click({ force: true })
-    cy.get(templateSelectInput(templateNum)).parents(templateRows).should('have.css', 'background-color', 'rgba(236, 225, 72, 0.5)')
+    cy.get(templateSelectInput(templateNum)).parents(templateRows).should('have.css', 'background-color', templatedClickColor)
     cy.get(templateDetailMenu).should('exist')
     cy.get(templateTScheduleFull).eq(0).should('have.text', checkTemplateId(templateNum))
 })
@@ -252,7 +254,7 @@ Cypress.Commands.add("closeTemplateDetails", (templateNum) => {
     cy.get(templateDetailMenu).should('exist')
     cy.get(templateDetailClose).click()
     cy.get(templateDetailMenu).should('exist')
-    cy.get(templateSelectInput(templateNum)).parents(templateRows).should('not.have.css', 'background-color', 'rgba(236, 225, 72, 0.5)')
+    cy.get(templateSelectInput(templateNum)).parents(templateRows).should('not.have.css', 'background-color', templatedClickColor)
 })
 
 Cypress.Commands.add("checkTemplateFullInfo", (templateNum) => {

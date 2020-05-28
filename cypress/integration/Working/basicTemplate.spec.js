@@ -89,6 +89,11 @@ import {
     rdTemplatesSite
 } from '../../support/variables/templatesVariables'
 
+import {
+    templateMockURL1,
+    templateMockResp1
+} from '../../support/testMock'
+
 context('PMDB: Template Basic tests', () => {
     beforeEach(() => {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
@@ -137,13 +142,6 @@ context('PMDB: Template Basic tests', () => {
         cy.changePage(3)
         cy.selectTemplate(13)
         cy.deselectTemplate(13)
-    })
-    it('Should be possible to select and deselect all templates on different pages', ()=> {
-        cy.selectAll(1)
-        cy.deselectAll(1)
-        cy.changePage(1)
-        cy.selectAll(2)
-        cy.deselectAll(2)
     })
     it('Should be possible to sort templates by all columns', () => {
         cy.get(templatePNHeader1).eq(0).click()
@@ -359,8 +357,16 @@ context('PMDB: Template Basic tests', () => {
         })
         cy.get(templateSaveEdit).eq(4).click({ force: true })
         cy.get(templateNewSuccess, { timeout: timeWait }).should('have.text',templateSuccessUpd)
-        cy.get(tepmateSpanField).eq(50).should('have.text', templateIdValue)
-        cy.get(tepmateSpanField).eq(79).should('have.text', templateOthersData1)
-        cy.setTemplateOthers()
+        cy.get(tepmateSpanField, { timeout: timeWait }).eq(50).should('have.text', templateIdValue)
+        cy.get(tepmateSpanField, { timeout: timeWait }).eq(79).should('have.text', templateOthersData1).then(() => {
+            cy.setTemplateOthers()
+        })
+    })
+    it('Should be possible to select and deselect all templates on different pages', ()=> {
+        cy.server()
+        cy.route('GET', templateMockURL1, templateMockResp1)
+        cy.changePage(1)
+        cy.selectAll(2)
+        cy.deselectAll(2)
     })
 })

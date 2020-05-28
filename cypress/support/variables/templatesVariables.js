@@ -201,3 +201,5 @@ export const templateOthersData1 = '\n      changeTest\n    '
 export const checkTemplateId = (num) => {
     return `\n    \n      \n\n      Id\n    \n      ${num}\n    \n  `
 }
+export const templateSelectedColor = 'rgba(73, 196, 161, 0.5)'
+export const templatedClickColor = 'rgba(236, 225, 72, 0.5)'
