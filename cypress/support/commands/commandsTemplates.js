@@ -1,6 +1,4 @@
 import {
-    titleSite,
-    shortTime,
     managerMarcinF,
     managerMaciej,
     managerAleksN,
