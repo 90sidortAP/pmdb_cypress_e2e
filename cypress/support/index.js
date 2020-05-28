@@ -6,6 +6,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false
   })
 
-  Cypress.Screenshot.defaults({
+Cypress.Screenshot.defaults({
     screenshotOnRunFailure: false
   })

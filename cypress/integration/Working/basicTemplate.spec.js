@@ -84,18 +84,26 @@ import {
     templateIdValue,
     templateFinanceData1,
     templateOthersData1,
-    templateCKEditorPar
+    templateCKEditorPar,
+    licenseTemplatesSite,
+    rdTemplatesSite
 } from '../../support/variables/templatesVariables'
 
 context('PMDB: Template Basic tests', () => {
     beforeEach(() => {
         cy.loginUI(correctUser, correctPass, allTemplatesSite)
       })
-    it('Should be possible to change number of displayed records', () => {
-        cy.changeRowNum('50')
-        cy.changeRowNum('100')
-        cy.changeRowNum('25')
-        cy.changeRowNum('All')
+      it('Should be possible to change number of displayed records', () => {
+        cy.changeRowQ('50', 52)
+        cy.changeRowQ('100', 97)
+        cy.changeRowQ('25', 27)
+        cy.changeRowQ('All', 97)
+    })
+      it('Should display only templates for currently selected subcategory', () => {
+        cy.visit(licenseTemplatesSite)
+        cy.changeRowQ('All', 53)
+        cy.visit(rdTemplatesSite)
+        cy.changeRowQ('All', 46)
     })
     it('Should be able to change template page', () => {
         cy.get(templatePages).should('have.length', '4')
@@ -163,7 +171,7 @@ context('PMDB: Template Basic tests', () => {
         cy.wait(1000)
         cy.get(templateOddRow).eq(0).should('have.text', templateSort6)
     })
-    it('Should open and close template details', ()=> {
+    it('Should open and close template details', () => {
         cy.openTemplateDetails(99)
         cy.checkTemplateInfo(99)
         cy.checkTemplateSchedule(99)
@@ -171,6 +179,12 @@ context('PMDB: Template Basic tests', () => {
         cy.checkTemplateFinance(99)
         cy.checkTemplateOther(99)
         cy.closeTemplateDetails(99)
+    })
+    it("Should change template in read mode after clicking another one", () => {
+        cy.viewport(1920, 1080)
+        cy.openTemplateDetails(99)
+        cy.wait(500)
+        cy.openTemplateDetails(85)
     })
     it('Should show message when no changes in changelog', () => {
         cy.openTemplateDetails(98)

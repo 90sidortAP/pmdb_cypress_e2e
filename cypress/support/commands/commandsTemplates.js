@@ -75,7 +75,8 @@ import {
     templateTextPBC,
     templateValuePBC,
     templateFileF,
-    templateTextFile
+    templateTextFile,
+    checkTemplateId
 } from '../variables/templatesVariables'
 
 Cypress.Commands.add("changePage", (pageNum) => {
@@ -95,16 +96,17 @@ Cypress.Commands.add("changePage", (pageNum) => {
     }
 })
 
-Cypress.Commands.add("changeRowNum", (displayNum) => {
+Cypress.Commands.add("changeRowQ", (displayNum, countExpect) => {
+    console.log(countExpect)
     cy.get(selectRecordDisplay, { timeout: timeWait }).select(displayNum).then(() => {
         if (displayNum === '50') {
-            cy.get(templateRows).should('have.length', 52)
+            cy.get(templateRows).should('have.length', countExpect)
         } else if (displayNum === '100') {
-            cy.get(templateRows).should('have.length', 97)
+            cy.get(templateRows).should('have.length', countExpect)
         } else if (displayNum === 'All') {
-            cy.get(templateRows).should('have.length', 97)
+            cy.get(templateRows).should('have.length', countExpect)
         } else {
-            cy.get(templateRows).should('have.length', 27)
+            cy.get(templateRows).should('have.length', countExpect)
         }
     })
 })
@@ -186,9 +188,10 @@ Cypress.Commands.add("deselectAll", (pageNum) => {
 })
 
 Cypress.Commands.add("openTemplateDetails", (templateNum) => {
-    cy.get(templateSelectInput(templateNum)).parents(templateRows).click()
+    cy.get(templateSelectInput(templateNum)).parents(templateRows).click({ force: true })
     cy.get(templateSelectInput(templateNum)).parents(templateRows).should('have.css', 'background-color', 'rgba(236, 225, 72, 0.5)')
     cy.get(templateDetailMenu).should('exist')
+    cy.get(templateTScheduleFull).eq(0).should('have.text', checkTemplateId(templateNum))
 })
 
 Cypress.Commands.add("checkTemplateInfo", (templateNum) => {

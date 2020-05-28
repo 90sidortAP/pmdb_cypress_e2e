@@ -198,4 +198,6 @@ export const templateAgreeData1 = '\n      2016\n    '
 export const templateAgreeData2 = '\n      10.0\n    '
 export const templateFinanceData1 = '\n      99,00\n    '
 export const templateOthersData1 = '\n      changeTest\n    '
-
+export const checkTemplateId = (num) => {
+    return `\n    \n      \n\n      Id\n    \n      ${num}\n    \n  `
+}
