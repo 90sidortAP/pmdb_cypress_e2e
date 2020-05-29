@@ -52,3 +52,20 @@ Cypress.Commands.add("setProjectAgreement", (id) => {
     })
 })
 
+Cypress.Commands.add("setProjectFinance", (id) => {
+    cy.getCookie('csrftoken').then((csrftoken) => {
+        if (id === 94) {
+            cy.request({
+                method: 'POST',
+                form: true,
+                url: 'http://127.0.0.1:8000/94/project-financial/update/',
+                body: {
+                    csrfmiddlewaretoken: csrftoken.value,
+                    project_budget_currency: "PLN",
+                    registration_budget: "251100.38",
+                    budget_comment: "<p>Podstawa obcy produkcja poza ziemniak prawie. Temperatura wąski kula przeszkoda otrzymywać. Padać Czechy muzyczny organizm. Brudny dobrze związek ciemny zakon.</p>"
+                }
+            })
+        }
+    })
+})

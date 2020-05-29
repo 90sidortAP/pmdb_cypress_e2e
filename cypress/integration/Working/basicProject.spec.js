@@ -45,7 +45,8 @@ import {
     sideRowInfo,
     itemIDValue,
     detailsSchedule,
-    detailsAgreement
+    detailsAgreement,
+    detailsFinance
 } from "../../support/variables/generalVariables"
 
 import {
@@ -72,7 +73,10 @@ import {
     projectSort11,
     projectSort12,
     registration94,
-    scheduleComment
+    scheduleComment,
+    agreementSupply,
+    agreementReconcile,
+    agreementEou
 } from "../../support/variables/projectsVariables"
 
 import { projectMockURL1 } from '../../support/testMock'
@@ -149,8 +153,9 @@ context('PMDB: Projects Basic tests', () => {
             cy.openProjectDetails(94)
             cy.checkProjectInfo(94)
             cy.checkProjectSchedule(94)
-            cy.get(detailsAgreement).eq(0).click()
-            
+            cy.checkProjectAgree(94)
+            cy.get(detailsFinance).eq(0).click()
+
         })
     })
 })

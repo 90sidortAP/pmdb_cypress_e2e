@@ -24,3 +24,6 @@ export const projectSort11 = '\n    \n    \n    \n            Magnesium/Multi ..
 export const projectSort12 = '\n    \n    \n    \n            Acetic Acid/Cal ...\n            Oral Drops Solution\n            \n      \n    Justyna RogowskaOral drops solutionFSMP1mg; 2mgVietnam'
 export const registrationMAH = '\n  \n    \n      \n\n      Registration Strategy\n    \n      MAH transfer\n    \n  \n'
 export const scheduleComment = '\n  \n    \n      \n      Schedule Comments\n    \n      Społeczny układ palec relacja gwałtowny tłumaczyć kłopot. Podstawa dodatkowy brzeg. Opowiadać zachodni rejon skała herbata. Wiosna gmina studiować epoka.\n    \n  \n'
+export const agreementSupply = '\n  \n    \n      \n      Supply Price\n    \n      Spodnie postawić Rumunia minerał głos gruby spotkanie. Jakby list Chorwacja uważać orzeł umieścić. Ciąża ucho pas zawodowy skala wyrażać. Gorący technika kościelny kuchnia istnieć minuta los 2.\n    \n  \n'
+export const agreementReconcile = '\n  \n    \n      \n      Reconciliation\n    \n      YES\n    \n  \n'
+export const agreementEou = '\n  \n    \n      \n      Agreement Number Eou\n    \n      99\n    \n  \n'
