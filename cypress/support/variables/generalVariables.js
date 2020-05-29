@@ -8,6 +8,9 @@ export const tableFilter = 'input[class="sheet__search"]'
 export const tableEmptySearch = 'td[class="dataTables_empty"]'
 export const tablePages = 'a[aria-controls="DataTables_Table_0"]'
 export const selectDisplayNum = 'select[name="DataTables_Table_0_length"]'
+export const detailMenuPanel = 'div[class="menu"]'
+export const sideRowInfo = 'div[class="details__data-container"]'
+export const detailsSchedule = 'a[id="update-schedule-tab"]'
 
 // URLs
 export const projectSite = 'http://127.0.0.1:8000/projects/'
@@ -29,3 +32,6 @@ export const tableSelectedColor = 'rgba(73, 196, 161, 0.5)'
 export const emptySearchMessage = 'No matching records found'
 export const pageColor1 = '#37474f'
 export const pageColor2 = 'rgb(55, 71, 79)'
+export const itemIDValue = (num) => {
+    return `\n  \n    \n      \n\n      Id\n    \n      ${num}\n    \n  \n`
+}

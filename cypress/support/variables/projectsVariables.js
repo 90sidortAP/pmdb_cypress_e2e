@@ -22,3 +22,4 @@ export const projectSort9 = '\n    \n    \n    \n            Body Cream\n       
 export const projectSort10 = '\n    \n    \n    \n            Ascorbic Acid/A ...\n            Effervescent Powder\n            \n      \n    Bartlomiej GrzywaczykEffervescent powderRx drug7,5mg/10mlTajikistan'
 export const projectSort11 = '\n    \n    \n    \n            Magnesium/Multi ...\n            Intravenous Infusion\n            \n      \n    Piotr PotaczekIntravenous infusionOTC drug2 mg/mlAzerbaijan'
 export const projectSort12 = '\n    \n    \n    \n            Acetic Acid/Cal ...\n            Oral Drops Solution\n            \n      \n    Justyna RogowskaOral drops solutionFSMP1mg; 2mgVietnam'
+export const registrationMAH = '\n  \n    \n      \n\n      Registration Strategy\n    \n      MAH transfer\n    \n  \n'

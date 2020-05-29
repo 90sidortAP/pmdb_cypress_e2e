@@ -38,7 +38,13 @@ import {
 import {
     projectSite,
     managerMarcinF,
-    managerAleksN
+    managerAleksN,
+    tableRow,
+    recordSelectInput,
+    detailMenuPanel,
+    sideRowInfo,
+    itemIDValue,
+    detailsSchedule
 } from "../../support/variables/generalVariables"
 
 import {
@@ -63,7 +69,8 @@ import {
     projectsMarHeader1,
     projectsMarHeader2,
     projectSort11,
-    projectSort12
+    projectSort12,
+    registration94
 } from "../../support/variables/projectsVariables"
 
 import { projectMockURL1 } from '../../support/testMock'
@@ -73,17 +80,17 @@ context('PMDB: Projects Basic tests', () => {
         cy.loginUI(correctUser, correctPass, projectSite)
       })
     //   it('Should be possible to change number of displayed records', () => {
-    //     cy.changeRowQ('50', 52)
-    //     cy.changeRowQ('100', 97)
-    //     cy.changeRowQ('25', 27)
-    //     cy.changeRowQ('All', 97)
+    //     cy.changeRecordNum('50', 52)
+    //     cy.changeRecordNum('100', 97)
+    //     cy.changeRecordNum('25', 27)
+    //     cy.changeRecordNum('All', 97)
     // })
-    it('Should display only projects for currently selected subcategory', () => {
-        cy.visit(projectsLicenseURL)
-        cy.changeRecordNum('All', 53)
-        cy.visit(projectsRdURL)
-        cy.changeRecordNum('All', 46)
-    })
+    // it('Should display only projects for currently selected subcategory', () => {
+    //     cy.visit(projectsLicenseURL)
+    //     cy.changeRecordNum('All', 53)
+    //     cy.visit(projectsRdURL)
+    //     cy.changeRecordNum('All', 46)
+    // })
     // it('Should be able to change projects page', () => {
     //     cy.get(templatePages).should('have.length', '4')
     //     cy.changePage(1)
@@ -127,11 +134,17 @@ context('PMDB: Projects Basic tests', () => {
     //     cy.selectRecord(13)
     //     cy.deselectRow(13)
     // })
-    // it('Should be possible to sort templates by all columns', () => {
+    // it('Should be possible to sort projects by all columns', () => {
     //     cy.sortColumn(templatePNHeader1, templatePNHeader2, projectsSort1, projectsSort2)
     //     cy.sortColumn(projectsPFHeader1, projectsPFHeader2, projectSort5, projectSort6)
     //     cy.sortColumn(projectsPCHeader1, projectsPCHeader2, projectSort7, projectSort8)
     //     cy.sortColumn(templatePSHeader1, templatePSHeader2, projectSort9, projectSort10)
     //     cy.sortColumn(projectsMarHeader1, projectsMarHeader2, projectSort11, projectSort12)
     // })
+    it('Should open and close project details', () => {
+        cy.viewport(1920, 1080)
+        cy.setProjectState(94).then(() => {
+            cy.checkProjectInfo(94)
+        })
+    })
 })
