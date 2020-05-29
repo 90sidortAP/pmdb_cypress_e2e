@@ -29,9 +29,26 @@ Cypress.Commands.add("setProjectSchedule", (id) => {
                     csrfmiddlewaretoken: csrftoken.value,
                     schedule_comments: "<p>Społeczny układ palec relacja gwałtowny tłumaczyć kłopot. Podstawa dodatkowy brzeg. Opowiadać zachodni rejon skała herbata. Wiosna gmina studiować epoka.</p>"
                 }
-            }). then(() => {
-                cy.wait(1000)
             })
         }
     })
 })
+
+Cypress.Commands.add("setProjectAgreement", (id) => {
+    cy.getCookie('csrftoken').then((csrftoken) => {
+        if (id === 94) {
+            cy.request({
+                method: 'POST',
+                form: true,
+                url: 'http://127.0.0.1:8000/94/project-agreements/update/',
+                body: {
+                    csrfmiddlewaretoken: csrftoken.value,
+                    supply_price: "<p>Spodnie postawić Rumunia minerał głos gruby spotkanie. Jakby list Chorwacja uważać orzeł umieścić. Ciąża ucho pas zawodowy skala wyrażać. Gorący technika kościelny kuchnia istnieć minuta los 2.</p>",
+                    reconciliation: "True",
+                    agreement_number_eou: "99"
+                }
+            })
+        }
+    })
+})
+

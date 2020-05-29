@@ -11,6 +11,7 @@ export const selectDisplayNum = 'select[name="DataTables_Table_0_length"]'
 export const detailMenuPanel = 'div[class="menu"]'
 export const sideRowInfo = 'div[class="details__data-container"]'
 export const detailsSchedule = 'a[id="update-schedule-tab"]'
+export const detailsAgreement = 'a[id="update-agreements-tab"]'
 
 // URLs
 export const projectSite = 'http://127.0.0.1:8000/projects/'

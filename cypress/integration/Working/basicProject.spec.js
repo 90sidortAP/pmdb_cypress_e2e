@@ -44,7 +44,8 @@ import {
     detailMenuPanel,
     sideRowInfo,
     itemIDValue,
-    detailsSchedule
+    detailsSchedule,
+    detailsAgreement
 } from "../../support/variables/generalVariables"
 
 import {
@@ -70,7 +71,8 @@ import {
     projectsMarHeader2,
     projectSort11,
     projectSort12,
-    registration94
+    registration94,
+    scheduleComment
 } from "../../support/variables/projectsVariables"
 
 import { projectMockURL1 } from '../../support/testMock'
@@ -144,7 +146,11 @@ context('PMDB: Projects Basic tests', () => {
     it('Should open and close project details', () => {
         cy.viewport(1920, 1080)
         cy.setProjectState(94).then(() => {
+            cy.openProjectDetails(94)
             cy.checkProjectInfo(94)
+            cy.checkProjectSchedule(94)
+            cy.get(detailsAgreement).eq(0).click()
+            
         })
     })
 })
