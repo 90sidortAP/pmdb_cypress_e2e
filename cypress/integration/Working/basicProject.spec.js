@@ -51,7 +51,17 @@ import {
     noFilesMess,
     detailChangeLog,
     noChangeMess,
-    changelogClose
+    changelogClose,
+    fullViewIcon,
+    iconInfoFull,
+    tableFullRow,
+    iconScheduleFull,
+    iconAgreeFull,
+    iconFinFull,
+    iconFileFull,
+    iconOtherFull,
+    tableSchedule,
+    detailTable
 } from "../../support/variables/generalVariables"
 
 import {
@@ -83,7 +93,10 @@ import {
     agreementReconcile,
     agreementEou,
     financeCurrency,
-    financeBudget
+    financeBudget,
+    fullIdRow,
+    scheduleTable,
+    agreementTable
 } from "../../support/variables/projectsVariables"
 
 import { projectMockURL1 } from '../../support/testMock'
@@ -180,5 +193,19 @@ context('PMDB: Projects Basic tests', () => {
     //     cy.get('div').contains(noChangeMess).should('exist')
     //     cy.get(changelogClose).click()
     //     cy.openProjectDetails(84)
-    // }) 
+    // })
+    it('Should be able to open and close fullscreen project view', () => {
+        cy.viewport(1920, 1080)
+        cy.openProjectDetails(94)
+        cy.get(fullViewIcon).click()
+        cy.get(iconInfoFull).click()
+        cy.get(tableFullRow).eq(0).should('have.text', fullIdRow)
+        cy.get(iconScheduleFull).click()
+        cy.get(tableSchedule).should('have.text', scheduleTable)
+        cy.get(iconAgreeFull).click()
+        cy.get(detailTable).eq(1).should('have.text', agreementTable)
+        cy.get(iconFinFull).click()
+        cy.get(iconFileFull).click()
+        cy.get(iconOtherFull).click()
+    })
 })
