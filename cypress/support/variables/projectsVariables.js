@@ -27,3 +27,8 @@ export const scheduleComment = '\n  \n    \n      \n      Schedule Comments\n   
 export const agreementSupply = '\n  \n    \n      \n      Supply Price\n    \n      Spodnie postawić Rumunia minerał głos gruby spotkanie. Jakby list Chorwacja uważać orzeł umieścić. Ciąża ucho pas zawodowy skala wyrażać. Gorący technika kościelny kuchnia istnieć minuta los 2.\n    \n  \n'
 export const agreementReconcile = '\n  \n    \n      \n      Reconciliation\n    \n      YES\n    \n  \n'
 export const agreementEou = '\n  \n    \n      \n      Agreement Number Eou\n    \n      99\n    \n  \n'
+export const financeCurrency = '\n  \n    \n      Project Budget Currency\n    \n      PLN\n    \n  \n'
+export const financeBudget = '\n  \n    \n      Registration Budget\n    \n      251 100,38\n    \n  \n'
+export const othersRisks = '\n  \n    \n      Risks\n    \n      Ściana właśnie wpaść amerykański pojazd tani cierpieć tradycyjny. Domowy farba podstawowy smutny chłopak.\n    \n  \n'
+export const othersPM = '\n  \n    \n      Product Manager\n    \n      Monika Pietruczuk\n    \n  \n'
+

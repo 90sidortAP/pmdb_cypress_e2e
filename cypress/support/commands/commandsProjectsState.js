@@ -69,3 +69,20 @@ Cypress.Commands.add("setProjectFinance", (id) => {
         }
     })
 })
+
+Cypress.Commands.add("setProjectOthers", (id) => {
+    cy.getCookie('csrftoken').then((csrftoken) => {
+        if (id === 94) {
+            cy.request({
+                method: 'POST',
+                form: true,
+                url: 'http://127.0.0.1:8000/94/project-others/update/',
+                body: {
+                    csrfmiddlewaretoken: csrftoken.value,
+                    risks: "<p>Ściana właśnie wpaść amerykański pojazd tani cierpieć tradycyjny. Domowy farba podstawowy smutny chłopak.</p>",
+                    product_manager: "20"
+                }
+            })
+        }
+    })
+})

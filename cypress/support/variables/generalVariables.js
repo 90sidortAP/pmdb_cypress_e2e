@@ -13,6 +13,9 @@ export const sideRowInfo = 'div[class="details__data-container"]'
 export const detailsSchedule = 'a[id="update-schedule-tab"]'
 export const detailsAgreement = 'a[id="update-agreements-tab"]'
 export const detailsFinance = 'a[id="update-financial-tab"]'
+export const detailsFiles = 'a[id="update-files-tab"]'
+export const detailsOthers = 'a[id="update-others-tab"]'
+export const detailCloseIcon = 'img[title="Close side panel"]'
 
 // URLs
 export const projectSite = 'http://127.0.0.1:8000/projects/'
@@ -37,3 +40,4 @@ export const pageColor2 = 'rgb(55, 71, 79)'
 export const itemIDValue = (num) => {
     return `\n  \n    \n      \n\n      Id\n    \n      ${num}\n    \n  \n`
 }
+export const noFilesMess = 'No files available. Edit project for files upload.'

@@ -46,7 +46,9 @@ import {
     itemIDValue,
     detailsSchedule,
     detailsAgreement,
-    detailsFinance
+    detailsFinance,
+    detailsFiles,
+    noFilesMess
 } from "../../support/variables/generalVariables"
 
 import {
@@ -76,7 +78,9 @@ import {
     scheduleComment,
     agreementSupply,
     agreementReconcile,
-    agreementEou
+    agreementEou,
+    financeCurrency,
+    financeBudget
 } from "../../support/variables/projectsVariables"
 
 import { projectMockURL1 } from '../../support/testMock'
@@ -147,15 +151,24 @@ context('PMDB: Projects Basic tests', () => {
     //     cy.sortColumn(templatePSHeader1, templatePSHeader2, projectSort9, projectSort10)
     //     cy.sortColumn(projectsMarHeader1, projectsMarHeader2, projectSort11, projectSort12)
     // })
-    it('Should open and close project details', () => {
-        cy.viewport(1920, 1080)
-        cy.setProjectState(94).then(() => {
-            cy.openProjectDetails(94)
-            cy.checkProjectInfo(94)
-            cy.checkProjectSchedule(94)
-            cy.checkProjectAgree(94)
-            cy.get(detailsFinance).eq(0).click()
-
-        })
-    })
+    // it('Should open and close project details', () => {
+    //     cy.viewport(1920, 1080)
+    //     cy.setProjectState(94).then(() => {
+    //         cy.openProjectDetails(94)
+    //         cy.checkProjectInfo(94)
+    //         cy.checkProjectSchedule(94)
+    //         cy.checkProjectAgree(94)
+    //         cy.checkProjectFinance(94)
+    //         cy.checkProjectFile(94)
+    //         cy.checkProjectOthers(94)
+    //         cy.closeProjectDetails()
+    //     })
+    // })
+    // it("Should change project in read mode after clicking another one", () => {
+    //     cy.viewport(1920, 1080)
+    //     cy.openProjectDetails(99)
+    //     cy.wait(500)
+    //     cy.openProjectDetails(85)
+    // })
+    
 })
