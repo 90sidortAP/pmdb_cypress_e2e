@@ -114,13 +114,14 @@ Cypress.Commands.add("changeRowQ", (displayNum, countExpect) => {
 })
 
 Cypress.Commands.add("filterTemplates", (searchQuery, desLength) => {
+    cy.get(templateRows).eq(2).contains(managerMarcinF).should('exist')
     cy.get(templateSearchFilter, {timeout: timeWait}).type(searchQuery)
     if (desLength === 0) {
         cy.get(templateRows).should('have.length', 2)
         cy.get(templateEmptySearch).should('have.text', emptySearchText)
         cy.get(templateSearchFilter, {timeout: timeWait}).clear()
     } else {
-        cy.get(templateRows).should('have.length', desLength).then(() => {
+        cy.get(templateRows, {timeout: timeWait}).should('have.length', desLength).then(() => {
             cy.get(templateSearchFilter, {timeout: timeWait}).clear()
             cy.get(templateRows).should('have.length', 27)
         })
