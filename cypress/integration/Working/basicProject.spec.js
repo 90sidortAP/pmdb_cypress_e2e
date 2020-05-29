@@ -48,7 +48,10 @@ import {
     detailsAgreement,
     detailsFinance,
     detailsFiles,
-    noFilesMess
+    noFilesMess,
+    detailChangeLog,
+    noChangeMess,
+    changelogClose
 } from "../../support/variables/generalVariables"
 
 import {
@@ -170,5 +173,12 @@ context('PMDB: Projects Basic tests', () => {
     //     cy.wait(500)
     //     cy.openProjectDetails(85)
     // })
-    
+    // it('Should show message when no changes in changelog', () => {
+    //     cy.viewport(1920, 1080)
+    //     cy.openProjectDetails(85)
+    //     cy.get(detailChangeLog).click()
+    //     cy.get('div').contains(noChangeMess).should('exist')
+    //     cy.get(changelogClose).click()
+    //     cy.openProjectDetails(84)
+    // }) 
 })

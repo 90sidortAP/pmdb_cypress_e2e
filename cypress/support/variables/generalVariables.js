@@ -16,6 +16,8 @@ export const detailsFinance = 'a[id="update-financial-tab"]'
 export const detailsFiles = 'a[id="update-files-tab"]'
 export const detailsOthers = 'a[id="update-others-tab"]'
 export const detailCloseIcon = 'img[title="Close side panel"]'
+export const detailChangeLog = 'img[title="Show Changelog"]'
+export const changelogClose = 'img[title="Exit"]'
 
 // URLs
 export const projectSite = 'http://127.0.0.1:8000/projects/'
@@ -41,3 +43,4 @@ export const itemIDValue = (num) => {
     return `\n  \n    \n      \n\n      Id\n    \n      ${num}\n    \n  \n`
 }
 export const noFilesMess = 'No files available. Edit project for files upload.'
+export const noChangeMess = 'No changes have been made to this project yet.'
