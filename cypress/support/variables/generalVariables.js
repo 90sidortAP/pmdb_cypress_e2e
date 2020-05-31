@@ -28,6 +28,13 @@ export const iconFileFull = 'a[id="fullScreenDetailsFiles-tab"]'
 export const iconOtherFull = 'a[id="fullScreenDetailsOther-tab"]'
 export const tableSchedule = 'table[class="table table-sm text-center mt-2"]'
 export const detailTable = 'table[class="details-table"]'
+export const iconFullClose = 'img[title="Exit"]'
+export const buttonSaveEdit = 'button[type="Submit"]'
+export const buttonEditFull = 'img[title="Edit"]'
+export const editInput = 'input[class="select2-search__field"]'
+export const editNewCreated = 'span[class="alert-message"]'
+export const richTextEditor = 'div[aria-label="Rich Text Editor, main"] p'
+export const createSelPrio = 'span[id="select2-id_priority-container"]'
 
 // URLs
 export const projectSite = 'http://127.0.0.1:8000/projects/'
@@ -54,3 +61,4 @@ export const itemIDValue = (num) => {
 }
 export const noFilesMess = 'No files available. Edit project for files upload.'
 export const noChangeMess = 'No changes have been made to this project yet.'
+export const ckeChangeTest = 'changeTest'
