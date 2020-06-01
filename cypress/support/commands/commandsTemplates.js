@@ -81,63 +81,6 @@ import {
     templatedClickColor
 } from '../variables/templatesVariables'
 
-Cypress.Commands.add("changePage", (pageNum) => {
-    cy.get(templatePages, { timeout: timeWait }).eq(pageNum).should('not.have.css', 'background-color', '#37474f')
-    cy.wait(500)
-    cy.get(templatePages, { timeout: timeWait }).eq(pageNum).click()
-    cy.wait(500)
-    cy.get(templatePages, { timeout: timeWait }).eq(pageNum).should('have.css', 'background-color', 'rgb(55, 71, 79)')
-    if (pageNum === 0) {
-        cy.get(templateRows).eq(2).contains(managerMarcinF).should('exist')
-    } else if (pageNum === 1) {
-        cy.get(templateRows).eq(2).contains(managerMaciej).should('exist')
-    } else if (pageNum === 2) {
-        cy.get(templateRows).eq(2).contains(managerAleksN).should('exist')
-    } else {
-        cy.get(templateRows).eq(2).contains(managerPiwo).should('exist')
-    }
-})
-
-Cypress.Commands.add("changeRowQ", (displayNum, countExpect) => {
-    console.log(countExpect)
-    cy.get(selectRecordDisplay, { timeout: timeWait }).select(displayNum).then(() => {
-        if (displayNum === '50') {
-            cy.get(templateRows).should('have.length', countExpect)
-        } else if (displayNum === '100') {
-            cy.get(templateRows).should('have.length', countExpect)
-        } else if (displayNum === 'All') {
-            cy.get(templateRows).should('have.length', countExpect)
-        } else {
-            cy.get(templateRows).should('have.length', countExpect)
-        }
-    })
-})
-
-Cypress.Commands.add("filterTemplates", (searchQuery, desLength) => {
-    cy.get(templateRows).eq(2).contains(managerMarcinF).should('exist')
-    cy.get(templateSearchFilter, {timeout: timeWait}).type(searchQuery)
-    if (desLength === 0) {
-        cy.get(templateRows).should('have.length', 2)
-        cy.get(templateEmptySearch).should('have.text', emptySearchText)
-        cy.get(templateSearchFilter, {timeout: timeWait}).clear()
-    } else {
-        cy.get(templateRows, {timeout: timeWait}).should('have.length', desLength).then(() => {
-            cy.get(templateSearchFilter, {timeout: timeWait}).clear()
-            cy.get(templateRows).should('have.length', 27)
-        })
-    }
-})
-
-Cypress.Commands.add("selectTemplate", (numValue) => {
-    cy.get(templateSelectInput(numValue)).should('exist').click()
-    cy.get(templateSelectInput(numValue)).parents(templateRows).should('have.css', 'background-color', templateSelectedColor)
-})
-
-Cypress.Commands.add("deselectTemplate", (numValue) => {
-    cy.get(templateSelectInput(numValue)).should('exist').click()
-    cy.get(templateSelectInput(numValue)).parents(templateRows).should('not.have.css', 'background-color', templateSelectedColor)
-})
-
 Cypress.Commands.add("selectAll", (pageNum) => {
     cy.get(templateSelectAll).eq(0).click()
     cy.wait(1000)
