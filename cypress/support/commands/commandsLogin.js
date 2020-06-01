@@ -8,7 +8,8 @@ import {
 } from '../variables/loginVariables'
 
 import {
-    titleSite
+    titleSite,
+    buttonSaveEdit
 } from '../variables/generalVariables'
 
 Cypress.Commands.add("openLoginPage", () => {
@@ -28,8 +29,8 @@ Cypress.Commands.add("loginAttempt", (user, password) => {
     if (password !== undefined) {
         cy.get(inputPassword).type(password)
     }
-    cy.get('button[type="submit"]').contains('Log in').should('exist')
-    cy.get('button[type="submit"]').contains('Log in').click()
+    cy.get(buttonSaveEdit).contains('Log in').should('exist')
+    cy.get(buttonSaveEdit).contains('Log in').click()
 })
 
 Cypress.Commands.add("loginUI", (user, login, site) => {
