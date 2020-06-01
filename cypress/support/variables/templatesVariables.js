@@ -1,37 +1,14 @@
 // This file contains data for templates page tests
 // Templates Elements
-export const selectRecordDisplay = 'select[name="DataTables_Table_0_length"]'
-export const templateRows = 'tr[role="row"]'
-export const templatePages = 'a[aria-controls="DataTables_Table_0"]'
-export const templateSearchFilter = 'input[class="sheet__search"]'
-export const templateEmptySearch = 'td[class="dataTables_empty"]'
-export const templateSelectInput = (numValue) => {
-    return `input[name="selections"][value="${numValue}"]`
-} 
-export const templateSelectAll = 'input[class="table__select table__select-all"]'
-export const templateDetailMenu = 'div[class="menu"]'
-export const templateDetailClose = 'img[title="Close side panel"]'
 export const templateDetailProjectName = 'a[id="details_s_name"]'
 export const templateDetailChanges = 'div[class="details__changes-container"]'
 export const templateDetailInfo = 'a[data-project-tab-type="informations"]'
-export const templateDetailSchedule = 'a[id="update-schedule-tab"]'
-export const templateDetailAgree = 'a[id="update-agreements-tab"]'
-export const templateDetailFinancial = 'a[id="update-financial-tab"]'
-export const templateDetailOthers = 'a[id="update-others-tab"]'
 export const templateContHeader = 'div[class="details__container-header"]'
 export const templateShowChange = 'img[alt="history of changes"]'
 export const templateInfo = 'a[id="update-informations-tab"]'
-export const templateSchedule = 'a[id="update-schedule-tab"]'
-export const templateAgreement = 'a[id="update-agreements-tab"]'
 export const templateFinance = 'a[id="update-financial-tab"]'
-export const templateOther = 'a[id="update-others-tab"]'
 export const templateChangelog = 'img[alt="history of changes"]'
-export const templateFullView = 'img[title="Full screen details"]'
-export const templateInfoF = 'a[id="fullScreenDetailsInformationTab-tab"]'
-export const templateScheduleF = 'a[id="fullScreenDetailsRealisation-tab"]'
 export const templateAgreeF = 'a[id="fullScreenDetailsAgreements-tab"]'
-export const templateFinanceF = 'a[id="fullScreenDetailsFinancial-tab"]'
-export const templateFileF = 'a[id="fullScreenDetailsFiles-tab"]'
 export const templateOtherF = 'a[id="fullScreenDetailsOther-tab"]'
 export const templateTableCell = 'td[class="details-table__cell"]'
 export const templateTScheduleFull = 'div[class="details__data-row"]'
@@ -68,7 +45,6 @@ export const templatePMHeader2 = 'th[aria-label=" Project Manager : activate to 
 export const templatePSHeader1 = 'th[aria-label=" Strength : activate to sort column ascending"]'
 export const templatePSHeader2 = 'th[aria-label=" Strength : activate to sort column descending"]'
 export const templateTCell = 'td[class=" table__cell"]'
-export const templateOddRow = 'tr[class="table__row table__body-row odd"]'
 export const templateCKEditorPar = 'div[aria-label="Rich Text Editor, main"] p'
 
 // Template 99 details

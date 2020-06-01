@@ -1,5 +1,4 @@
 import {
-    templatePages,
     formCreamy,
     formHerbal,
     nameBifi,
@@ -26,7 +25,6 @@ import {
     tableRow,
     detailChangeLog,
     noChangeMess,
-    changelogClose,
     fullViewIcon,
     iconInfoFull,
     tableFullRow,
@@ -57,7 +55,8 @@ import {
     editPBudget,
     shortTime,
     editRegBudget,
-    editOtherPM
+    editOtherPM,
+    tablePages
 } from "../../support/variables/generalVariables"
 
 import {
@@ -124,7 +123,7 @@ context('PMDB: Projects Basic tests', () => {
         cy.changeRecordNum('All', 46)
     })
     it('Should be able to change projects page', () => {
-        cy.get(templatePages).should('have.length', '4')
+        cy.get(tablePages).should('have.length', '4')
         cy.changePage(1)
         cy.changePage(2)
         cy.changePage(3)
@@ -197,7 +196,7 @@ context('PMDB: Projects Basic tests', () => {
         cy.openProjectDetails(85)
         cy.get(detailChangeLog).click()
         cy.get('div').contains(noChangeMess).should('exist')
-        cy.get(changelogClose).click()
+        cy.get(iconFullClose).click()
         cy.openProjectDetails(84)
     })
     it('Should be able to open and close fullscreen project view', () => {

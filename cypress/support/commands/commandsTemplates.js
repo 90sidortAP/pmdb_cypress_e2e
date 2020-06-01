@@ -1,22 +1,8 @@
 import {
-    managerMarcinF,
-    managerMaciej,
-    managerAleksN,
-    managerPiwo,
-    timeWait
-} from '../variables/generalVariables'
-
-import {
     templatePages,
-    templateRows,
     selectRecordDisplay,
-    templateSearchFilter,
-    templateEmptySearch,
     emptySearchText,
-    templateSelectInput,
     templateSelectAll,
-    templateDetailMenu,
-    templateDetailClose,
     templateSpanDetail,
     tepmateSpanField,
     templateIdField,
@@ -26,14 +12,12 @@ import {
     templateAtcOtcField,
     templateNLicenseField,
     templateInfo,
-    templateSchedule,
     templateAgreeValue,
     templateDsvValue,
     templateMexValue,
     templateAgreeField,
     templateDsvField,
     templateMexField,
-    templateAgreement,
     templateMaqField,
     templateDeliveryField,
     templateVarField,
@@ -51,14 +35,12 @@ import {
     templateLContactValue,
     templateOther,
     templateTableCell,
-    templateInfoF,
     templateTextId,
     templateValueId,
     templateTextSource,
     templateValueSource,
     templateTextPrior,
     templateValuePrior,
-    templateScheduleF,
     templateTextMApp,
     templateValueMApp,
     templateTextDex,
@@ -68,75 +50,36 @@ import {
     templateValueRC,
     templateTextCPD,
     templateValueCPD,
-    templateAgreeF,
-    templateFinanceF,
     templateTextCogs,
     templateVelueCogs,
     templateTextPBC,
     templateValuePBC,
-    templateFileF,
     templateTextFile,
     checkTemplateId,
     templateSelectedColor,
     templatedClickColor
 } from '../variables/templatesVariables'
 
-Cypress.Commands.add("selectAll", (pageNum) => {
-    cy.get(templateSelectAll).eq(0).click()
-    cy.wait(1000)
-    if (pageNum === 1) {
-        for(let i = 99; i > 73; i --) {
-            if (i !== 80) {
-                cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', templateSelectedColor)
-            }        
-        }
-    } else if (pageNum === 2) {
-        for(let i = 73; i > 47; i --) {
-            if (i !== 60) {
-                cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', templateSelectedColor)
-            }
-        }
-    } else if (pageNum === 3) {
-        for(let i = 49; i > 24; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', templateSelectedColor)        
-        }
-    } else {
-        for(let i = 24; i > 0; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('have.css', 'background-color', templateSelectedColor)        
-        }
-    }
-})
-
-Cypress.Commands.add("deselectAll", (pageNum) => {
-    cy.get(templateSelectAll).eq(0).click()
-    cy.wait(1000)
-    if (pageNum === 1) {
-        for(let i = 99; i > 73; i --) {
-            if (i !== 80) {
-                cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', templateSelectedColor)
-            }        
-        }
-    } else if (pageNum === 2) {
-        for(let i = 73; i > 47; i --) {
-            if (i !== 60) {
-                cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', templateSelectedColor)        
-            }
-        }
-    } else if (pageNum === 3) {
-        for(let i = 49; i > 24; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', templateSelectedColor)        
-        }
-    } else {
-        for(let i = 24; i > 0; i --) {
-            cy.get(templateSelectInput(i)).parents(templateRows).should('not.have.css', 'background-color', templateSelectedColor)        
-        }
-    }
-})
+import {
+    recordSelectInput,
+    tableRow,
+    detailMenuPanel,
+    detailsSchedule,
+    detailsAgreement,
+    detailsFinance,
+    detailsOthers,
+    detailCloseIcon,
+    iconInfoFull,
+    iconScheduleFull,
+    iconAgreeFull,
+    iconFinFull,
+    iconFileFull
+} from '../variables/generalVariables'
 
 Cypress.Commands.add("openTemplateDetails", (templateNum) => {
-    cy.get(templateSelectInput(templateNum)).parents(templateRows).click({ force: true })
-    cy.get(templateSelectInput(templateNum)).parents(templateRows).should('have.css', 'background-color', templatedClickColor)
-    cy.get(templateDetailMenu).should('exist')
+    cy.get(recordSelectInput(templateNum)).parents(tableRow).click({ force: true })
+    cy.get(recordSelectInput(templateNum)).parents(tableRow).should('have.css', 'background-color', templatedClickColor)
+    cy.get(detailMenuPanel).should('exist')
     cy.get(templateTScheduleFull).eq(0).should('have.text', checkTemplateId(templateNum))
 })
 
@@ -154,7 +97,7 @@ Cypress.Commands.add("checkTemplateInfo", (templateNum) => {
 
 Cypress.Commands.add("checkTemplateSchedule", (templateNum) => {
     if (templateNum === 99) {
-        cy.get(templateSchedule).eq(0).click({ force: true })
+        cy.get(detailsSchedule).eq(0).click({ force: true })
         cy.get('td').contains(templateAgreeField).parents('tr').should('have.text', templateAgreeValue)
         cy.get('td').contains(templateDsvField).parents('tr').should('have.text', templateDsvValue)        
         cy.get(templateSpanDetail).eq(16).should('have.text', templateMexField)
@@ -164,7 +107,7 @@ Cypress.Commands.add("checkTemplateSchedule", (templateNum) => {
 
 Cypress.Commands.add("checkTemplateAgree", (templateNum) => {
     if (templateNum === 99) {
-        cy.get(templateAgreement).eq(0).click({ force: true })
+        cy.get(detailsAgreement).eq(0).click({ force: true })
         cy.get(templateSpanDetail).eq(21).should('have.text', templateMaqField)
         cy.get(tepmateSpanField).eq(21).should('have.text', templateMaqValue)
         cy.get(templateSpanDetail).eq(31).should('have.text', templateDeliveryField)
@@ -176,7 +119,7 @@ Cypress.Commands.add("checkTemplateAgree", (templateNum) => {
 
 Cypress.Commands.add("checkTemplateFinance", (templateNum) => {
     if (templateNum === 99) {
-        cy.get(templateFinance).eq(0).click({ force: true })
+        cy.get(detailsFinance).eq(0).click({ force: true })
         cy.get(templateSpanDetail).eq(46).should('have.text', templateCogsField)
         cy.get(tepmateSpanField).eq(46).should('have.text', templateCogsValue)
         cy.get(templateSpanDetail).eq(49).should('have.text', templateLBudgetField)
@@ -186,7 +129,7 @@ Cypress.Commands.add("checkTemplateFinance", (templateNum) => {
 
 Cypress.Commands.add("checkTemplateOther", (templateNum) => {
     if (templateNum === 99) {
-        cy.get(templateOther).eq(0).click({ force: true })
+        cy.get(detailsOthers).eq(0).click({ force: true })
         cy.get(templateSpanDetail).eq(50).should('have.text', templateLRefProField)
         cy.get(tepmateSpanField).eq(50).should('have.text', templateLRefProValue)
         cy.get(templateSpanDetail).eq(78).should('have.text', templateLContactField)
@@ -195,15 +138,15 @@ Cypress.Commands.add("checkTemplateOther", (templateNum) => {
 })
 
 Cypress.Commands.add("closeTemplateDetails", (templateNum) => {
-    cy.get(templateDetailMenu).should('exist')
-    cy.get(templateDetailClose).click()
-    cy.get(templateDetailMenu).should('exist')
-    cy.get(templateSelectInput(templateNum)).parents(templateRows).should('not.have.css', 'background-color', templatedClickColor)
+    cy.get(detailMenuPanel).should('exist')
+    cy.get(detailCloseIcon).click()
+    cy.get(detailMenuPanel).should('exist')
+    cy.get(recordSelectInput(templateNum)).parents(tableRow).should('not.have.css', 'background-color', templatedClickColor)
 })
 
 Cypress.Commands.add("checkTemplateFullInfo", (templateNum) => {
     if (templateNum === 99) {
-        cy.get(templateInfoF).eq(0).click({ force: true })
+        cy.get(iconInfoFull).eq(0).click({ force: true })
         cy.get(templateTableCell).eq(0).should("have.text", templateTextId)
         cy.get(templateTableCell).eq(1).should("have.text", templateValueId)
         cy.get(templateTableCell).eq(14).should("have.text", templateTextSource)
@@ -215,7 +158,7 @@ Cypress.Commands.add("checkTemplateFullInfo", (templateNum) => {
 
 Cypress.Commands.add("checkTemplateFullSchedule", (templateNum) => {
     if (templateNum === 99) {
-        cy.get(templateScheduleF).eq(0).click({ force: true })
+        cy.get(iconScheduleFull).eq(0).click({ force: true })
         cy.get('td').contains(templateTextMApp).parents('tr').should('have.text', templateValueMApp)
         cy.get('span').contains(templateTextDex).parents(templateTScheduleFull).should('have.text', templateValueDex)
     }
@@ -223,7 +166,7 @@ Cypress.Commands.add("checkTemplateFullSchedule", (templateNum) => {
 
 Cypress.Commands.add("checkTemplateFullAgree", (templateNum) => {
     if (templateNum === 99) {
-        cy.get(templateAgreeF).eq(0).click({ force: true })
+        cy.get(iconAgreeFull).eq(0).click({ force: true })
         cy.get(templateTableCell).eq(38).should("have.text", templateTextRC)
         cy.get(templateTableCell).eq(39).should("have.text", templateValueRC)
         cy.get(templateTableCell).eq(80).should("have.text", templateTextCPD)
@@ -233,7 +176,7 @@ Cypress.Commands.add("checkTemplateFullAgree", (templateNum) => {
 
 Cypress.Commands.add("checkTemplateFullFin", (templateNum) => {
     if (templateNum === 99) {
-        cy.get(templateFinanceF).eq(0).click({ force: true })
+        cy.get(iconFinFull).eq(0).click({ force: true })
         cy.get(templateTableCell).eq(84).should("have.text", templateTextCogs)
         cy.get(templateTableCell).eq(85).should("have.text", templateVelueCogs)
         cy.get(templateTableCell).eq(88).should("have.text", templateTextPBC)
@@ -243,7 +186,7 @@ Cypress.Commands.add("checkTemplateFullFin", (templateNum) => {
 
 Cypress.Commands.add("checkTemplateFullFile", (templateNum) => {
     if (templateNum === 99) {
-        cy.get(templateFileF).eq(0).click({ force: true })
+        cy.get(iconFileFull).eq(0).click({ force: true })
         cy.get('span').contains(templateTextFile)
     }
 })

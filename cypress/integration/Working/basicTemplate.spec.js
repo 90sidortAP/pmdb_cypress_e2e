@@ -7,12 +7,18 @@ import {
     timeWait,
     managerMarcinF,
     managerAleksN,
-    managerPiwo
+    managerPiwo,
+    tablePages,
+    detailMenuPanel,
+    detailsSchedule,
+    detailsAgreement,
+    detailsFinance,
+    detailsOthers,
+    fullViewIcon
 } from '../../support/variables/generalVariables'
 
 import {
     allTemplatesSite,
-    templatePages,
     formCreamy,
     formHerbal,
     nameBifi,
@@ -26,12 +32,10 @@ import {
     templateChangelog,
     templateNoChange,
     templateFull,
-    templateFullView,
     templateEditDetail,
     templateSaveEdit,
     templateEditFull,
     templateAddNew,
-    templateDetailMenu,
     templateSelSource,
     templateSelPro,
     templateSelMol,
@@ -51,13 +55,10 @@ import {
     templateInputApi,
     templateSuccessUpd,
     tepmateSpanField,
-    templateSchedule,
     templatePMBApp,
     templateIPCX,
-    templateAgreement,
     templateSuppPeriod,
     templateAgreeNote,
-    templateFinance,
     templatePBudget,
     templateRefInput,
     templateOther,
@@ -70,7 +71,6 @@ import {
     templatePSHeader1,
     templatePSHeader2,
     templateCloseFull,
-    templateOddRow,
     templateSort1,
     templateSort2,
     templateSort3,
@@ -111,7 +111,7 @@ context('PMDB: Template Basic tests', () => {
     //     cy.changeRecordNum('All', 46)
     // })
     // it('Should be able to change template page', () => {
-    //     cy.get(templatePages).should('have.length', '4')
+    //     cy.get(tablePages).should('have.length', '4')
     //     cy.changePage(1)
     //     cy.changePage(2)
     //     cy.changePage(3)
@@ -140,25 +140,12 @@ context('PMDB: Template Basic tests', () => {
     //     cy.selectRecord(13)
     //     cy.deselectRow(13)
     // })
-    it('Should be possible to sort templates by all columns', () => {
-        cy.sortColumn(templatePNHeader1, templatePNHeader2, templateSort1, templateSort2)
-        cy.sortColumn(templateMHeader1, templateMHeader2, templateSort1, templateSort2)
-
-
-        // cy.get(templateOddRow).eq(0).should('have.text', templateSort2)
-        // cy.get(templatePMHeader1).eq(0).click()
-        // cy.wait(1000)
-        // cy.get(templateOddRow).eq(0).should('have.text', templateSort3)
-        // cy.get(templatePMHeader2).eq(0).click()
-        // cy.wait(1000)
-        // cy.get(templateOddRow).eq(0).should('have.text', templateSort4)
-        // cy.get(templatePSHeader1).eq(0).click()
-        // cy.wait(1000)
-        // cy.get(templateOddRow).eq(0).should('have.text', templateSort5)
-        // cy.get(templatePSHeader2).eq(0).click()
-        // cy.wait(1000)
-        // cy.get(templateOddRow).eq(0).should('have.text', templateSort6)
-    })
+    // it('Should be possible to sort templates by all columns', () => {
+    //     cy.sortColumn(templatePNHeader1, templatePNHeader2, templateSort1, templateSort2)
+    //     cy.sortColumn(templateMHeader1, templateMHeader2, templateSort1, templateSort2)
+    //     cy.sortColumn(templatePMHeader1, templatePMHeader2, templateSort3, templateSort4)
+    //     cy.sortColumn(templatePSHeader1, templatePSHeader2, templateSort5, templateSort6)
+    // })
     // it('Should open and close template details', () => {
     //     cy.openTemplateDetails(99)
     //     cy.checkTemplateInfo(99)
@@ -169,7 +156,6 @@ context('PMDB: Template Basic tests', () => {
     //     cy.closeTemplateDetails(99)
     // })
     // it("Should change template in read mode after clicking another one", () => {
-    //     cy.viewport(1920, 1080)
     //     cy.openTemplateDetails(99)
     //     cy.wait(500)
     //     cy.openTemplateDetails(85)
@@ -181,7 +167,7 @@ context('PMDB: Template Basic tests', () => {
     // }) 
     // it('Should be able to open and close fullscreen template view', () => {
     //     cy.openTemplateDetails(99)
-    //     cy.get(templateFullView).click()
+    //     cy.get(fullViewIcon).click()
     //     cy.get(templateCloseFull, { timeout: timeWait })
     //     cy.get('span').contains(templateFull)
     //     cy.checkTemplateFullInfo(99)
@@ -197,55 +183,9 @@ context('PMDB: Template Basic tests', () => {
     // })
     // it('Should be able to open template edit mode in full view', () => {
     //     cy.openTemplateDetails(99)
-    //     cy.get(templateFullView).click()
+    //     cy.get(fullViewIcon).click()
     //     cy.get(templateEditFull).eq(1).click()
     //     cy.get(templateSaveEdit, { timeout: timeWait }).contains('Save').should('exist')
-    // })
-    // it('Should be possible to create new template with mandatory data', () => {
-    //     cy.get(templateAddNew).click()
-    //     cy.get(templateDetailMenu).should('exist')
-    //     cy.get(templateSelSource).eq(0).select("License-in")
-    //     cy.get(templateSelPro).click()
-    //     cy.get(templateInput).type(managerPiwo)
-    //     cy.get('li').contains(managerPiwo).click()
-    //     cy.wait(500)
-    //     cy.get(templateSelMol).click()
-    //     cy.get(templateInput).type(template1Prop)
-    //     cy.get('li').contains(template1Prop).click()
-    //     cy.get(templateSelStr).type(templateValueId)
-    //     cy.get(templateSelPF).click()
-    //     cy.get(templateInput).type(formHerbal)
-    //     cy.get('li').contains(formHerbal).click()
-    //     cy.get(templateCreate).click()
-    //     cy.get(templateNewSuccess).should('have.text', templateSuccessNfo)
-    //     cy.wait(1000)
-    //     cy.get(templateFirst).eq(0).contains(template1Prop).should('exist')
-    // })
-    // it('Should be possible to create new template with all data', () => {
-    //     cy.get(templateAddNew).click()
-    //     cy.get(templateDetailMenu).should('exist')
-    //     cy.get(templateSelSource).eq(0).select("License-in")
-    //     cy.get(templateSelPro).click()
-    //     cy.get(templateInput).type(managerPiwo)
-    //     cy.get('li').contains(managerPiwo).click()
-    //     cy.wait(500)
-    //     cy.get(templateSelMol).click()
-    //     cy.get(templateInput).type(template1Prop)
-    //     cy.get('li').contains(template1Prop).click()
-    //     cy.get(templateSelStr).type(templateValueId)
-    //     cy.get(templateSelPF).click()
-    //     cy.get(templateInput).type(formHerbal)
-    //     cy.get('li').contains(formHerbal).click()
-    //     cy.get(templateSelTA).click()
-    //     cy.get(templateInput).type(templateNeurology)
-    //     cy.get('li').contains(templateNeurology).click()
-    //     cy.get(templateSelATC).click()
-    //     cy.get(templateInput).type(templateAntimeta)
-    //     cy.get('li').contains(templateAntimeta).click()
-    //     cy.get(templateCreate).click()
-    //     cy.get(templateNewSuccess).should('have.text', templateSuccessNfo)
-    //     cy.wait(1000)
-    //     cy.get(templateFirst).eq(0).contains(template1Prop).should('exist')
     // })
     // it('Should be possible to make changes to an existing template', () => {
     //     cy.setTemplateEdit()
@@ -262,7 +202,7 @@ context('PMDB: Template Basic tests', () => {
     // })
     // it('Should be impossible to create new template without mandatory data', () => {
     //     cy.get(templateAddNew).click()
-    //     cy.get(templateDetailMenu).should('exist')
+    //     cy.get(detailMenuPanel).should('exist')
     //     cy.get(templateCreate).click()
     //     cy.get(templateSelSource).eq(0)
     //         .should('exist')
@@ -293,7 +233,7 @@ context('PMDB: Template Basic tests', () => {
     // it('Should be possible to save changest made to template Schedule section', () => {
     //     cy.setTemplateSchedule()
     //     cy.openTemplateDetails(97)
-    //     cy.get(templateSchedule).eq(0).click({ force: true })
+    //     cy.get(detailsSchedule).eq(0).click({ force: true })
     //     cy.get(templateEditDetail).eq(0).click()
     //     cy.get(templateSaveEdit).contains('Save').should('exist')
     //     cy.get(templatePMBApp, { timeout : timeWait }).clear().type('2020-05-30')
@@ -312,7 +252,7 @@ context('PMDB: Template Basic tests', () => {
     // it('Should be possible to save changest made to template Agreement section', () => {
     //     cy.setTemplateAgreement()
     //     cy.openTemplateDetails(97)
-    //     cy.get(templateAgreement).eq(0).click({ force: true })
+    //     cy.get(detailsAgreement).eq(0).click({ force: true })
     //     cy.get(templateEditDetail).eq(0).click()
     //     cy.get(templateSaveEdit).contains('Save').should('exist')
     //     cy.get(templateAgreeNote).type(10)
@@ -326,7 +266,7 @@ context('PMDB: Template Basic tests', () => {
     // it('Should be possible to save changest made to template Finance section', () => {
     //     cy.setTemplateFinance()
     //     cy.openTemplateDetails(97)
-    //     cy.get(templateFinance).eq(0).click({ force: true })
+    //     cy.get(detailsFinance).eq(0).click({ force: true })
     //     cy.get(templateEditDetail).eq(0).click()
     //     cy.get(templateSaveEdit).contains('Save').should('exist')
     //     cy.get(templatePBudget, {timeout: timeWait }).clear().type(templateValueId)
@@ -338,7 +278,7 @@ context('PMDB: Template Basic tests', () => {
     // it('Should be possible to save changest made to template Others section', () => {
     //     cy.setTemplateOthers()
     //     cy.openTemplateDetails(97)
-    //     cy.get(templateOther).eq(0).click({ force: true })
+    //     cy.get(detailsOthers).eq(0).click({ force: true })
     //     cy.get(templateEditDetail).eq(0).click()
     //     cy.get(templateSaveEdit).contains('Save').should('exist')
     //     cy.get(templateRefInput, {timeout: timeWait }).clear().type(templateValueId)
@@ -352,11 +292,57 @@ context('PMDB: Template Basic tests', () => {
     //         cy.setTemplateOthers()
     //     })
     // })
-    // it('Should be possible to select and deselect all templates on different pages', ()=> {
-    //     cy.server()
-    //     cy.route('GET', templateMockURL1, templateMockResp1)
-    //     cy.changePage(1)
-    //     cy.selectAll(2)
-    //     cy.deselectAll(2)
+    it('Should be possible to select and deselect all templates on different pages', ()=> {
+        cy.server()
+        cy.route('GET', templateMockURL1, templateMockResp1)
+        cy.changePage(1)
+        cy.selectAll(2)
+        cy.deselectAll(2)
+    })
+    // it('Should be possible to create new template with mandatory data', () => {
+    //     cy.get(templateAddNew).click()
+    //     cy.get(detailMenuPanel).should('exist')
+    //     cy.get(templateSelSource).eq(0).select("License-in")
+    //     cy.get(templateSelPro).click()
+    //     cy.get(templateInput).type(managerPiwo)
+    //     cy.get('li').contains(managerPiwo).click()
+    //     cy.wait(500)
+    //     cy.get(templateSelMol).click()
+    //     cy.get(templateInput).type(template1Prop)
+    //     cy.get('li').contains(template1Prop).click()
+    //     cy.get(templateSelStr).type(templateValueId)
+    //     cy.get(templateSelPF).click()
+    //     cy.get(templateInput).type(formHerbal)
+    //     cy.get('li').contains(formHerbal).click()
+    //     cy.get(templateCreate).click()
+    //     cy.get(templateNewSuccess).should('have.text', templateSuccessNfo)
+    //     cy.wait(1000)
+    //     cy.get(templateFirst).eq(0).contains(template1Prop).should('exist')
+    // })
+    // it('Should be possible to create new template with all data', () => {
+    //     cy.get(templateAddNew).click()
+    //     cy.get(detailMenuPanel).should('exist')
+    //     cy.get(templateSelSource).eq(0).select("License-in")
+    //     cy.get(templateSelPro).click()
+    //     cy.get(templateInput).type(managerPiwo)
+    //     cy.get('li').contains(managerPiwo).click()
+    //     cy.wait(500)
+    //     cy.get(templateSelMol).click()
+    //     cy.get(templateInput).type(template1Prop)
+    //     cy.get('li').contains(template1Prop).click()
+    //     cy.get(templateSelStr).type(templateValueId)
+    //     cy.get(templateSelPF).click()
+    //     cy.get(templateInput).type(formHerbal)
+    //     cy.get('li').contains(formHerbal).click()
+    //     cy.get(templateSelTA).click()
+    //     cy.get(templateInput).type(templateNeurology)
+    //     cy.get('li').contains(templateNeurology).click()
+    //     cy.get(templateSelATC).click()
+    //     cy.get(templateInput).type(templateAntimeta)
+    //     cy.get('li').contains(templateAntimeta).click()
+    //     cy.get(templateCreate).click()
+    //     cy.get(templateNewSuccess).should('have.text', templateSuccessNfo)
+    //     cy.wait(1000)
+    //     cy.get(templateFirst).eq(0).contains(template1Prop).should('exist')
     // })
 })

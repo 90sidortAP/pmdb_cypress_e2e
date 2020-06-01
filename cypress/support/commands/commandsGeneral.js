@@ -14,7 +14,8 @@ import {
     managerPiwo,
     pageColor2,
     pageColor1,
-    selectDisplayNum
+    selectDisplayNum,
+    recordsSelectAll
 } from "../variables/generalVariables"
 
 Cypress.Commands.add("changeRecordNum", (displayNum, countExpect) => {
@@ -78,5 +79,57 @@ Cypress.Commands.add("filterRecords", (searchQuery, desLength) => {
             cy.get(tableFilter, {timeout: timeWait}).clear()
             cy.get(tableRow).should('have.length', 27)
         })
+    }
+})
+
+Cypress.Commands.add("selectAll", (pageNum) => {
+    cy.get(recordsSelectAll).eq(0).click()
+    cy.wait(1000)
+    if (pageNum === 1) {
+        for(let i = 99; i > 73; i --) {
+            if (i !== 80) {
+                cy.get(recordSelectInput(i)).parents(tableRow).should('have.css', 'background-color', tableSelectedColor)
+            }        
+        }
+    } else if (pageNum === 2) {
+        for(let i = 73; i > 47; i --) {
+            if (i !== 60) {
+                cy.get(recordSelectInput(i)).parents(tableRow).should('have.css', 'background-color', tableSelectedColor)
+            }
+        }
+    } else if (pageNum === 3) {
+        for(let i = 49; i > 24; i --) {
+            cy.get(recordSelectInput(i)).parents(tableRow).should('have.css', 'background-color', tableSelectedColor)        
+        }
+    } else {
+        for(let i = 24; i > 0; i --) {
+            cy.get(recordSelectInput(i)).parents(tableRow).should('have.css', 'background-color', tableSelectedColor)        
+        }
+    }
+})
+
+Cypress.Commands.add("deselectAll", (pageNum) => {
+    cy.get(recordsSelectAll).eq(0).click()
+    cy.wait(1000)
+    if (pageNum === 1) {
+        for(let i = 99; i > 73; i --) {
+            if (i !== 80) {
+                cy.get(recordSelectInput(i)).parents(tableRow).should('not.have.css', 'background-color', tableSelectedColor)
+            }        
+        }
+    } else if (pageNum === 2) {
+        for(let i = 73; i > 47; i --) {
+            if (i !== 60) {
+                cy.get(recordSelectInput(i)).parents(tableRow).should('not.have.css', 'background-color', tableSelectedColor)        
+            }
+        }
+    } else if (pageNum === 3) {
+        for(let i = 49; i > 24; i --) {
+            cy.get(recordSelectInput(i)).parents(tableRow).should('not.have.css', 'background-color', tableSelectedColor)        
+        }
+    } else {
+        for(let i = 24; i > 0; i --) {
+            cy.get(recordSelectInput(i)).parents(tableRow).should('not.have.css', 'background-color', tableSelectedColor)        
+        }
     }
 })
