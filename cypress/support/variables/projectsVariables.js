@@ -17,6 +17,7 @@ export const projectsTemplate = 'span[id="select2-id_template-container"]'
 export const projectsMarket = 'span[id="select2-id_market-container"]'
 export const projectsCreate = 'input[name="create_project"]'
 export const projectsUpload = 'button[id="file__upload-button-submit"]'
+export const projectsFiles = 'div[class="dz-default dz-message"]'
 
 export const projectTemplateName = 'License-in Glycopyrronium/Indacaterol--Cream'
 export const projectsSort1 = '\n    \n    \n    \n            Acetic Acid/Cal ...\n            Oral Drops Solution\n            \n      \n    Justyna RogowskaOral drops solutionFSMP1mg; 2mgVietnam'
