@@ -44,7 +44,20 @@ import {
     editInput,
     editNewCreated,
     richTextEditor,
-    ckeChangeTest
+    ckeChangeTest,
+    editInputApi,
+    editPM,
+    editPMBApp,
+    editNewDate,
+    editDossReady,
+    editEOU,
+    editAgreeSign,
+    managerMaciej,
+    sideRowInfo,
+    editPBudget,
+    shortTime,
+    editRegBudget,
+    editOtherPM
 } from "../../support/variables/generalVariables"
 
 import {
@@ -79,7 +92,17 @@ import {
     projectsMarket,
     projectsTemplate,
     projectsCreate,
-    newProjectAnna
+    newProjectAnna,
+    projectsConfTemplate,
+    projectsChangeInfo,
+    projectsApproval,
+    projectsDossiers,
+    projectsSign,
+    projectsEON,
+    projectsBudget,
+    projectsRegistration,
+    projectsUpload,
+    projectProductMan
 } from "../../support/variables/projectsVariables"
 
 import { projectMockURL1 } from '../../support/testMock'
@@ -220,7 +243,7 @@ context('PMDB: Projects Basic tests', () => {
         cy.wait(1000)
         cy.get(tableRow).eq(2).should('have.text', newProjectAnna)
     })
-    it('Should be able to create new project with mandatory data', () => {
+    it('Should be able to create new project with all data', () => {
         cy.viewport(1920, 1080)
         cy.get(projectsCreateNew).click()
         cy.get(projectsTemplate).click()
@@ -236,5 +259,91 @@ context('PMDB: Projects Basic tests', () => {
         cy.get(editNewCreated).should('exist')
         cy.wait(1000)
         cy.get(tableRow).eq(2).should('have.text', newProjectAnna)
+    })
+    it('Should be possible to make changes to projects Info section', () => {
+        cy.setProjectState(94).then(() => {
+            cy.openProjectDetails(94)
+            cy.get(projectsEditIcon).eq(0).click()
+            cy.get(buttonSaveEdit).contains('Save').should('exist')
+            cy.get(editInputApi).type(ckeChangeTest)
+            cy.get(editPM).click()
+            cy.get(editInput).type(managerMarcinF)
+            cy.get('li').contains(managerMarcinF).click()
+            cy.get(buttonSaveEdit).contains('Save').click()
+            cy.get(editNewCreated).should('exist')
+            cy.wait(1000)
+            cy.get(tableRow).eq(7).should('have.text', projectsChangeInfo)
+        })
+    })
+    it('Should be possible to make changes to projects Schedule section', () => {
+        cy.setProjectState(94).then(() => {
+            cy.openProjectDetails(94)
+            cy.checkProjectSchedule(94)
+            cy.get(projectsEditIcon).eq(0).click()
+            cy.get(buttonSaveEdit).contains('Save').should('exist')
+            cy.get(editPMBApp).type(editNewDate, { delay : 50 })
+            cy.get(editDossReady).type(editNewDate, { delay : 50 })
+            cy.get(buttonSaveEdit).eq(1).click({force: true})
+            cy.get(editNewCreated).should('exist')
+            cy.wait(1000)
+            cy.get('td').contains("PMB approval Date").parents('tr').should('have.text', projectsApproval)
+            cy.get('td').contains("Dossier ready").parents('tr').should('have.text', projectsDossiers)
+            cy.setProjectState(94)
+        })
+    })
+    it('Should be possible to make changes to projects Agreements section', () => {
+        cy.setProjectState(94).then(() => {
+            cy.openProjectDetails(94)
+            cy.checkProjectAgree(94)
+            cy.get(projectsEditIcon).eq(0).click()
+            cy.get(buttonSaveEdit).contains('Save').should('exist')
+            cy.get(editAgreeSign).type(editNewDate, { delay : 50 })
+            cy.get(editEOU).clear().type(managerMaciej, { delay : 50 })
+            cy.get(buttonSaveEdit).eq(2).click({force: true})
+            cy.get(editNewCreated).should('exist')
+            cy.wait(1000)
+            cy.get(sideRowInfo).eq(22).should('have.text', projectsSign)
+            cy.get(sideRowInfo).eq(41).should('have.text', projectsEON)
+            cy.setProjectState(94)
+        })
+    })
+    it('Should be possible to make changes to projects Finance section', () => {
+        cy.setProjectState(94).then(() => {
+            cy.openProjectDetails(94)
+            cy.checkProjectFinance(94)
+            cy.get(projectsEditIcon).eq(0).click()
+            cy.get(buttonSaveEdit).contains('Save').should('exist')
+            cy.get(editPBudget).clear().type(shortTime, { delay : 50 })
+            cy.get(editRegBudget).clear().type(timeWait, { delay : 50 })
+            cy.get(buttonSaveEdit).eq(3).click({force: true})
+            cy.get(editNewCreated).should('exist')
+            cy.wait(1000)
+            cy.get(sideRowInfo).eq(44).should('have.text', projectsBudget)
+            cy.get(sideRowInfo).eq(48).should('have.text', projectsRegistration)
+            cy.setProjectState(94)
+        })
+    })
+    //// it('Should be possible to make changes to projects Files section', () => {
+    ////     cy.setProjectState(94).then(() => {
+    ////         cy.openProjectDetails(94)
+    ////         cy.checkProjectFile(94)
+    ////         cy.get(projectsEditIcon).eq(0).click()
+    ////         cy.get(projectsUpload).should('exist')
+    ////         cy.wait(1000)
+    ////     })
+    //// })
+        it('Should be possible to make changes to projects Others section', () => {
+        cy.setProjectState(94).then(() => {
+            cy.openProjectDetails(94)
+            cy.checkProjectOthers(94)
+            cy.get(projectsEditIcon).eq(0).click()
+            cy.get(buttonSaveEdit).contains('Save').should('exist')
+            cy.get(editOtherPM).click()
+            cy.get(editInput).type(managerMarcinF)
+            cy.get('li').contains(managerMarcinF).click()
+            cy.get(buttonSaveEdit).eq(4).click({force: true})
+            cy.wait(1000)
+            cy.get(sideRowInfo).eq(55).should('have.text', projectProductMan)
+        })
     })
 })

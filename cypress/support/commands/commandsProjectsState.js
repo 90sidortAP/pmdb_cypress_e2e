@@ -86,3 +86,28 @@ Cypress.Commands.add("setProjectOthers", (id) => {
         }
     })
 })
+
+Cypress.Commands.add("setProjectConfidential", ()=> {
+    cy.getCookie('csrftoken').then((csrftoken) => {
+        cy.request({
+            method: 'POST',
+            form: true,
+            url: 'http://127.0.0.1:8000/74/template-informations/update/',
+            body: {
+                csrfmiddlewaretoken: csrftoken.value,
+                confidential: "on",
+                molecule: "6261",
+                api: "żaden",
+                pharmaceutical_form: "2381",
+                strength: "1mg",
+                source: "0",
+                project_manager: "12",
+                therapeutical_area: "473",
+                priority: "1",
+                atc3_or_otc3: "5727",
+                licensor: "3015",
+                new_licensor: "True"
+            }
+        })
+    })
+})

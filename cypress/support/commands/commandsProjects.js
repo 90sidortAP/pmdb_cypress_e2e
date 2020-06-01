@@ -22,7 +22,7 @@ Cypress.Commands.add('checkProjectInfo', (id) => {
 })
 
 Cypress.Commands.add('checkProjectSchedule', (id) => {
-    cy.get(detailsSchedule).eq(0).click()
+    cy.get(detailsSchedule).eq(0).click({ force: true })
     if (id === 94) {
         cy.get(sideRowInfo).eq(19).should('have.text', scheduleComment)
         cy.get(sideRowInfo).eq(18).should('have.text', registrationMAH)
@@ -30,7 +30,7 @@ Cypress.Commands.add('checkProjectSchedule', (id) => {
 })
 
 Cypress.Commands.add('checkProjectAgree', (id) => {
-    cy.get(detailsAgreement).eq(0).click()
+    cy.get(detailsAgreement).eq(0).click({force: true})
     if (id === 94) {
         cy.get(sideRowInfo).eq(21).should('have.text', agreementSupply)
         cy.get(sideRowInfo).eq(24).should('have.text', agreementReconcile)
@@ -39,7 +39,7 @@ Cypress.Commands.add('checkProjectAgree', (id) => {
 })
 
 Cypress.Commands.add('checkProjectFinance', (id) => {
-    cy.get(detailsFinance).eq(0).click()
+    cy.get(detailsFinance).eq(0).click({force: true})
     if (id === 94) {
         cy.get(sideRowInfo).eq(45).should('have.text', financeCurrency)
         cy.get(sideRowInfo).eq(47).should('have.text', financeBudget)
@@ -47,14 +47,14 @@ Cypress.Commands.add('checkProjectFinance', (id) => {
 })
 
 Cypress.Commands.add('checkProjectFile', (id) => {
-    cy.get(detailsFiles).eq(0).click()
+    cy.get(detailsFiles).eq(0).click({force: true})
     if (id === 94) {
         cy.get('span').contains(noFilesMess)
     }
 })
 
 Cypress.Commands.add('checkProjectOthers', (id) => {
-    cy.get(detailsOthers).eq(0).click()
+    cy.get(detailsOthers).eq(0).click({force: true})
     if (id === 94) {
         cy.get(sideRowInfo).eq(50).should('have.text', othersRisks)
         cy.get(sideRowInfo).eq(55).should('have.text', othersPM)
