@@ -21,7 +21,10 @@ import {
     richTextEditor,
     editInputApi,
     editPM,
-    editPBudget
+    editPBudget,
+    editInput,
+    buttonEditFull,
+    editPMBApp
 } from '../../support/variables/generalVariables'
 
 import {

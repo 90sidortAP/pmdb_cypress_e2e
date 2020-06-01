@@ -77,7 +77,7 @@ import {
 } from '../variables/generalVariables'
 
 Cypress.Commands.add("openTemplateDetails", (templateNum) => {
-    cy.get(recordSelectInput(templateNum)).parents(tableRow).click({ force: true })
+    cy.get(recordSelectInput(templateNum)).parents(tableRow).click()
     cy.get(recordSelectInput(templateNum)).parents(tableRow).should('have.css', 'background-color', templatedClickColor)
     cy.get(detailMenuPanel).should('exist')
     cy.get(templateTScheduleFull).eq(0).should('have.text', checkTemplateId(templateNum))

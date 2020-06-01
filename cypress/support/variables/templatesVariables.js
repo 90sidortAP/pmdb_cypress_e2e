@@ -45,6 +45,7 @@ export const templateNLicenseValue = '\n      —\n    '
 // Template details fields
 export const templateIdField = '\n      \n\n      Id'
 export const templateAtcOtcField = '\n      \n\n      Atc3 Or Otc3'
+export const templateNLicenseField = '\n      \n\n      New Licensor'
 
 // Template 99 schedule
 export const templateAgreeValue = '\n      Agreement signed\n      \n        \n        2020-05-21\n        \n      \n      \n        \n        2020-05-22\n        \n      \n    '
