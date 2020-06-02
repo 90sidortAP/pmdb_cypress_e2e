@@ -1,4 +1,3 @@
-# pmdb_cypress_e2e
 Feature: Login 
 
    As a user I want to be able to login correctly
@@ -369,3 +368,71 @@ Feature: Templates edit
     When User types to Reference product input
     And User clicks Save
     Then Changed template Others is shown (94)
+
+   Scenario: Should be able to cancel edition
+    Given Templates site is opened
+    When User clicks on template (94)
+    Then Template Information is shown
+    When User clicks on template Others (94)
+    Then Template Others is shown (94)
+    And User clicks Edit template
+    Then Template Others is in edit mode
+    When User click Cancel
+    Then Template Others is shown (94)
+
+   Scenario: Should not be able to select other templates when in edit mode
+    Given Templates site is opened
+    When User clicks on template (94)
+    Then Template Information is shown
+    When User clicks Edit template
+    Then Template Information is in edit mode
+    And Template table is darkened
+
+Feature: Templates creation 
+
+   As a user I want to be able to create new templates
+
+   Scenario: Should be able to create new template with mandatory data only
+    Given Templates site is opened
+    When User clicks Create new template
+    Then Template creation form is opened
+    When User selects source (License-in)
+    And User selects Project Manager (Maciej Piwowarski)
+    And User selects Molecule (1-Propanol)
+    And User provides Strength (99)
+    And User selects Pharmaceutical Form (Herbal)
+    And User clicks Create template
+    Then New template1 should be created
+
+   Scenario: Should be able to create new template with all data
+    Given Templates site is opened
+    When User clicks Create new template
+    Then Template creation form is opened
+    When User selects source (License-in)
+    And User selects Project Manager (Maciej Piwowarski)
+    And User selects Molecule (1-Propanol)
+    And User provides Strength (99)
+    And User selects Pharmaceutical Form (Herbal)
+    And User selects Therapeutical area (Neurology)
+    And User selects Confidential
+    And User clicks Create template
+    Then New template2 should be created
+
+   Scenario: Should not be able to create new template with no mandatory data
+    Given Templates site is opened
+    When User clicks Create new template
+    Then Template creation form is opened
+    When User clicks Create template
+    Then Template is not saved
+    When User selects source (License-in)
+    When User clicks Create template
+    Then Template is not saved
+    And User selects Project Manager (Maciej Piwowarski)
+    When User clicks Create template
+    Then Template is not saved
+    And User selects Molecule (1-Propanol)
+    When User clicks Create template
+    Then Template is not saved
+    And User provides Strength (99)
+    When User clicks Create template
+    Then Template is not saved
