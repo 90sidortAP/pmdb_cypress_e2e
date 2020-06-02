@@ -204,6 +204,45 @@ Feature: Templates filtering
     When User types DsntExist to filter input
     Then No matching records found is shown
 
+Feature: Projects filtering 
+
+   As a user I want to be able to select filter projects by all columns
+    @projectsPage
+   Scenario: Should be able to filter projects by Project Name
+    Given Projects site is opened
+    When User types Cream to filter input
+    Then Only projects with Cream are shown 
+
+   Scenario: Should be able to filter projects by Project Manager
+    Given Projects site is opened
+    When User types Marcin to filter input
+    Then Only projects with Marcin are shown
+
+   Scenario: Should be able to filter projects by Pharmaceutical Form
+    Given Projects site is opened
+    When User types Herbal to filter input
+    Then Only projects with Herbal are shown
+
+   Scenario: Should be able to filter projects by Prescription Category
+    Given Projects site is opened
+    When User types Food to filter input
+    Then Only projects with Food are shown
+
+   Scenario: Should be able to filter projects by Market
+    Given Projects site is opened
+    When User types Poland to filter input
+    Then Only projects with Poland are shown
+
+   Scenario: Should be able to filter projects by Strength
+    Given Projects site is opened
+    When User types 20mg to filter input
+    Then Only projects with 20mg are shown
+
+   Scenario: Should show message when query does not match projects
+    Given Projects site is opened
+    When User types DsntExist to filter input
+    Then No matching records found is shown
+
 Feature: Templates column sorting 
 
    As a user I want to be able to sort table by all columns
@@ -211,30 +250,76 @@ Feature: Templates column sorting
    Scenario: Should be able to sort templates by Project Name
     Given Templates site is opened
     When User clicks Project Name column (ascending)
-    Then Templates are sorted ascending by Project Name
+    Then Records are sorted ascending by Project Name
     When User clicks Project Name column (descending)
-    Then Templates are sorted descending by Project Name
+    Then Records are sorted descending by Project Name
 
    Scenario: Should be able to sort templates by Molecule
     Given Templates site is opened
     When User clicks Molecule column (ascending)
-    Then Templates are sorted ascending by Molecule
+    Then Records are sorted ascending by Molecule
     When User clicks Molecule column (descending)
-    Then Templates are sorted descending by Molecule
+    Then Records are sorted descending by Molecule
 
    Scenario: Should be able to sort templates by Project Manager
     Given Templates site is opened
     When User clicks Project Manager column (ascending)
-    Then Templates are sorted ascending by Project Manager
+    Then Records are sorted ascending by Project Manager
     When User clicks Project Manager column (descending)
-    Then Templates are sorted descending by Project Manager
+    Then Records are sorted descending by Project Manager
 
    Scenario: Should be able to sort templates by Strength
     Given Templates site is opened
     When User clicks Strength column (ascending)
-    Then Templates are sorted ascending by Strength
+    Then Records are sorted ascending by Strength
     When User clicks Strength column (descending)
-    Then Templates are sorted descending by Strength
+    Then Records are sorted descending by Strength
+
+Feature: Projects column sorting 
+
+   As a user I want to be able to sort table by all columns
+    @projectsPage
+   Scenario: Should be able to sort projects by Project Name
+    Given Projects site is opened
+    When User clicks Project Name column (ascending)
+    Then Records are sorted ascending by Project Name
+    When User clicks Project Name column (descending)
+    Then Records are sorted descending by Project Name
+
+   Scenario: Should be able to sort projects by Project Manager
+    Given Projects site is opened
+    When User clicks Project Manager column (ascending)
+    Then Records are sorted ascending by Project Manager
+    When User clicks Project Manager column (descending)
+    Then Records are sorted descending by Project Manager
+
+   Scenario: Should be able to sort projects by Pharmaceutical Form
+    Given Projects site is opened
+    When User clicks Pharmaceutical Form column (ascending)
+    Then Records are sorted ascending by Pharmaceutical Form
+    When User clicks Pharmaceutical Form column (descending)
+    Then Records are sorted descending by Pharmaceutical Form
+
+   Scenario: Should be able to sort templates by Prescription Category
+    Given Projects site is opened
+    When User clicks Prescription Category column (ascending)
+    Then Records are sorted ascending by Prescription Category
+    When User clicks Prescription Category column (descending)
+    Then Records are sorted descending by Prescription Category
+
+   Scenario: Should be able to sort templates by Strength
+    Given Projects site is opened
+    When User clicks Strength column (ascending)
+    Then Records are sorted ascending by Strength
+    When User clicks Strength column (descending)
+    Then Records are sorted descending by Strength
+
+   Scenario: Should be able to sort templates by Market
+    Given Projects site is opened
+    When User clicks Market column (ascending)
+    Then Records are sorted ascending by Market
+    When User clicks Market column (descending)
+    Then Records are sorted descending by Market
 
 Feature: Templates types 
 
@@ -246,6 +331,17 @@ Feature: Templates types
     Then License-in templates are shown
     When User clicks Templates: R&D
     Then R&D templates are shown
+
+Feature: Projects types 
+
+   As a user I want to be able to work only with License-in/R&D projects
+    @projectsPage
+   Scenario: Should be able to display only License-in/ R&D projects
+    Given Projects site is opened
+    When User clicks Projects: License-in
+    Then License-in projects are shown
+    When User clicks Projects: R&D
+    Then R&D projects are shown
 
 Feature: Template details 
 
@@ -290,6 +386,49 @@ Feature: Template details
     When User clicks on template Schedule (90)
     Then Template Schedule is shown (90)
 
+Feature: Projects details 
+
+   As a user I want to be able check project details
+    @projectsPage
+   Scenario: Should be able to open and close project
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Close side panel
+    Then Project Information is closed
+
+   Scenario: Should be able to check project information after clicking on a specific project
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+
+   Scenario: Should be able to check project schedule after clicking on a specific project
+    Given Projects site is opened
+    When User clicks on project Schedule (94)
+    Then Project Schedule is shown (94)
+
+   Scenario: Should be able to check project agreement after clicking on a specific project
+    Given Projects site is opened
+    When User clicks on project Agreement (94)
+    Then Project Agreement is shown (94)
+
+   Scenario: Should be able to check project financial after clicking on a specific project
+    Given Projects site is opened
+    When User clicks on project Financial (94)
+    Then Project Financial is shown (94)
+
+   Scenario: Should be able to check project others after clicking on a specific project
+    Given Projects site is opened
+    When User clicks on project Others (94)
+    Then Project Others is shown (94)
+
+   Scenario: Should change displayed project details after selecting another project
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks on project (90)
+    Then Project Information is changed
+
 Feature: Templates full screen 
 
    As a user I want to be able to open template details in full screen mode
@@ -299,52 +438,117 @@ Feature: Templates full screen
     When User clicks on template (94)
     Then Template Information is shown
     When User clicks Full screen icon
-    Then Templete Information is shown in full screen mode
+    Then Template Information is shown in full screen mode
 
    Scenario: Should be able to open template schedule in full screen mode
     Given Templates site is opened
     When User clicks on template (94)
     Then Template Information is shown
     When User clicks Full screen icon
-    Then Templete Information is shown in full screen mode
+    Then Template Information is shown in full screen mode
     When User clicks template Schedule in full screen mode
-    Then Templete Schedule is shown in full screen mode
+    Then Template Schedule is shown in full screen mode
 
    Scenario: Should be able to open template agreement in full screen mode
     Given Templates site is opened
     When User clicks on template (94)
     Then Template Information is shown
     When User clicks Full screen icon
-    Then Templete Information is shown in full screen mode
+    Then Template Information is shown in full screen mode
     When User clicks template Agreement in full screen mode
-    Then Templete Agreement is shown in full screen mode
+    Then Template Agreement is shown in full screen mode
 
    Scenario: Should be able to open template financial in full screen mode
     Given Templates site is opened
     When User clicks on template (94)
     Then Template Information is shown
     When User clicks Full screen icon
-    Then Templete Information is shown in full screen mode
+    Then Template Information is shown in full screen mode
     When User clicks template Financial in full screen mode
-    Then Templete Financial is shown in full screen mode
+    Then Template Financial is shown in full screen mode
 
    Scenario: Should be able to open template others in full screen mode
     Given Templates site is opened
     When User clicks on template (94)
     Then Template Information is shown
     When User clicks Full screen icon
-    Then Templete Information is shown in full screen mode
+    Then Template Information is shown in full screen mode
     When User clicks template Others in full screen mode
-    Then Templete Others is shown in full screen mode
+    Then Template Others is shown in full screen mode
 
    Scenario: Should be able to edit template from full screen mode
     Given Templates site is opened
     When User clicks on template (94)
     Then Template Information is shown
     When User clicks Full screen icon
-    Then Templete Information is shown in full screen mode
+    Then Template Information is shown in full screen mode
     When User clicks Edit icon in full screen mode
     Then Template edit mode is opened
+
+Feature: Projects full screen 
+
+   As a user I want to be able to open project details in full screen mode
+    @projectsPage
+   Scenario: Should be able to open project information in full screen mode
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Full screen icon
+    Then Project Information is shown in full screen mode
+
+   Scenario: Should be able to open project schedule in full screen mode
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Full screen icon
+    Then Project Information is shown in full screen mode
+    When User clicks project Schedule in full screen mode
+    Then Project Schedule is shown in full screen mode
+
+   Scenario: Should be able to open project agreement in full screen mode
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Full screen icon
+    Then Project Information is shown in full screen mode
+    When User clicks project Agreement in full screen mode
+    Then Project Agreement is shown in full screen mode
+
+   Scenario: Should be able to open project financial in full screen mode
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Full screen icon
+    Then Project Information is shown in full screen mode
+    When User clicks project Financial in full screen mode
+    Then Project Financial is shown in full screen mode
+
+   Scenario: Should be able to open project files in full screen mode
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Full screen icon
+    Then Project Information is shown in full screen mode
+    When User clicks project Files in full screen mode
+    Then Project Files is shown in full screen mode
+
+   Scenario: Should be able to open project others in full screen mode
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Full screen icon
+    Then Project Information is shown in full screen mode
+    When User clicks project Others in full screen mode
+    Then Project Others is shown in full screen mode
+
+   Scenario: Should be able to edit project from full screen mode
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Full screen icon
+    Then Project Information is shown in full screen mode
+    When User clicks Edit icon in full screen mode
+    Then Project edit mode is opened
 
 Feature: Templates changelog 
 
@@ -357,10 +561,29 @@ Feature: Templates changelog
     When User clicks Show Changelog
     Then Changelog is shown
 
-   Scenario: Should show no changes made in changelog if project was never modified
+   Scenario: Should show no changes made in changelog if template was never modified
     Given Templates site is opened
     When User clicks on template (94)
     Then Template Information is shown
+    When User clicks Show Changelog
+    Then Changelog is shown
+    And Message No changes is displayed
+
+Feature: Projects changelog 
+
+   As a user I want to be able to check changes made to a project
+    @projectsPage
+   Scenario: Should be able to open project changelog
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Show Changelog
+    Then Changelog is shown
+
+   Scenario: Should show no changes made in changelog if project was never modified
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
     When User clicks Show Changelog
     Then Changelog is shown
     And Message No changes is displayed
@@ -378,6 +601,86 @@ Feature: Templates edit
     When User types to API input
     And User clicks Save
     Then Changed template Information is shown (94) 
+
+   Scenario: Should be able to edit template schedule
+    Given Templates site is opened
+    When User clicks on template (94)
+    Then Template Information is shown
+    When User clicks on template Schedule (94)
+    And User clicks Edit template
+    Then Template Schedule is in edit mode
+    When User types to PMB approval date input
+    And User clicks Save
+    Then Changed template Schedule is shown (94)
+
+   Scenario: Should be able to edit template agreement
+    Given Templates site is opened
+    When User clicks on template (94)
+    Then Template Information is shown
+    When User clicks on template Agreement (94)
+    Then Template Agreement is shown (94)
+    And User clicks Edit template
+    Then Template Agreement is in edit mode
+    When User types to Supply period input
+    And User clicks Save
+    Then Changed template Agreement is shown (94)
+
+   Scenario: Should be able to edit template financial
+    Given Templates site is opened
+    When User clicks on template (94)
+    Then Template Information is shown
+    When User clicks on template Financial (94)
+    Then Template Financial is shown (94)
+    And User clicks Edit template
+    Then Template Financial is in edit mode
+    When User types to License cost input
+    And User clicks Save
+    Then Changed template Financial is shown (94)
+
+   Scenario: Should be able to edit template others
+    Given Templates site is opened
+    When User clicks on template (94)
+    Then Template Information is shown
+    When User clicks on template Others (94)
+    Then Template Others is shown (94)
+    And User clicks Edit template
+    Then Template Others is in edit mode
+    When User types to Reference product input
+    And User clicks Save
+    Then Changed template Others is shown (94)
+
+   Scenario: Should be able to cancel edition
+    Given Templates site is opened
+    When User clicks on template (94)
+    Then Template Information is shown
+    When User clicks on template Others (94)
+    Then Template Others is shown (94)
+    And User clicks Edit template
+    Then Template Others is in edit mode
+    When User click Cancel
+    Then Template Others is shown (94)
+
+   Scenario: Should not be able to select other templates when in edit mode
+    Given Templates site is opened
+    When User clicks on template (94)
+    Then Template Information is shown
+    When User clicks Edit template
+    Then Template Information is in edit mode
+    And Template table is darkened
+
+Feature: Projects edit 
+
+   As a user I want to be able to edit project data
+    @projectsPage
+   Scenario: Should be able to edit project information
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Edit project
+    Then Project Information is in edit mode
+    When User types to API input
+    And User clicks Save
+    Then Changed project Information is shown (94) 
 
    Scenario: Should be able to edit template schedule
     Given Templates site is opened
