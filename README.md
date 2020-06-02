@@ -682,71 +682,94 @@ Feature: Projects edit
     And User clicks Save
     Then Changed project Information is shown (94) 
 
-   Scenario: Should be able to edit template schedule
-    Given Templates site is opened
-    When User clicks on template (94)
-    Then Template Information is shown
-    When User clicks on template Schedule (94)
-    And User clicks Edit template
-    Then Template Schedule is in edit mode
+   Scenario: Should be able to edit project schedule
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks on project Schedule (94)
+    And User clicks Edit project
+    Then Project Schedule is in edit mode
     When User types to PMB approval date input
     And User clicks Save
-    Then Changed template Schedule is shown (94)
+    Then Changed project Schedule is shown (94)
 
-   Scenario: Should be able to edit template agreement
-    Given Templates site is opened
-    When User clicks on template (94)
-    Then Template Information is shown
-    When User clicks on template Agreement (94)
-    Then Template Agreement is shown (94)
-    And User clicks Edit template
-    Then Template Agreement is in edit mode
+   Scenario: Should be able to edit project agreement
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks on project Agreement (94)
+    Then Project Agreement is shown (94)
+    And User clicks Edit project
+    Then Project Agreement is in edit mode
     When User types to Supply period input
     And User clicks Save
-    Then Changed template Agreement is shown (94)
+    Then Changed project Agreement is shown (94)
 
-   Scenario: Should be able to edit template financial
-    Given Templates site is opened
-    When User clicks on template (94)
-    Then Template Information is shown
-    When User clicks on template Financial (94)
-    Then Template Financial is shown (94)
-    And User clicks Edit template
-    Then Template Financial is in edit mode
+   Scenario: Should be able to edit project financial
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks on project Financial (94)
+    Then Project Financial is shown (94)
+    And User clicks Edit project
+    Then Project Financial is in edit mode
     When User types to License cost input
     And User clicks Save
-    Then Changed template Financial is shown (94)
+    Then Changed project Financial is shown (94)
 
-   Scenario: Should be able to edit template others
-    Given Templates site is opened
-    When User clicks on template (94)
-    Then Template Information is shown
-    When User clicks on template Others (94)
-    Then Template Others is shown (94)
-    And User clicks Edit template
-    Then Template Others is in edit mode
+   Scenario: Should be able to edit project files
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks on project Files (94)
+    Then Project Files is shown (94)
+    And User clicks Edit project
+    Then Project Files is in edit mode
+    When User uploads a File
+    And User clicks Upload Files 
+    Then File should be uploaded
+
+   Scenario: Should be able to cancel files upload
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks on project Files (94)
+    Then Project Files is shown (94)
+    And User clicks Edit project
+    Then Project Files is in edit mode
+    When User clicks Cancel Upload  
+    Then Upload is canceled
+
+   Scenario: Should be able to edit project others
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks on project Others (94)
+    Then Project Others is shown (94)
+    And User clicks Edit project
+    Then Project Others is in edit mode
     When User types to Reference product input
     And User clicks Save
-    Then Changed template Others is shown (94)
+    Then Changed project Others is shown (94)
 
    Scenario: Should be able to cancel edition
-    Given Templates site is opened
-    When User clicks on template (94)
-    Then Template Information is shown
-    When User clicks on template Others (94)
-    Then Template Others is shown (94)
-    And User clicks Edit template
-    Then Template Others is in edit mode
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks on project Others (94)
+    Then Project Others is shown (94)
+    And User clicks Edit project
+    Then Project Others is in edit mode
     When User click Cancel
-    Then Template Others is shown (94)
+    Then Project Others is shown (94)
 
-   Scenario: Should not be able to select other templates when in edit mode
-    Given Templates site is opened
-    When User clicks on template (94)
-    Then Template Information is shown
-    When User clicks Edit template
-    Then Template Information is in edit mode
-    And Template table is darkened
+   Scenario: Should not be able to select other projects when in edit mode
+    Given Projects site is opened
+    When User clicks on project (94)
+    Then Project Information is shown
+    When User clicks Edit project
+    Then Project Information is in edit mode
+    And Project table is darkened
 
 Feature: Templates creation 
 
@@ -796,3 +819,36 @@ Feature: Templates creation
     And User provides Strength (99)
     When User clicks Create template
     Then Template is not saved
+
+Feature: Projects creation 
+
+   As a user I want to be able to create new project
+    @projectsPage
+   Scenario: Should be able to create new project with mandatory data only
+    Given Projects site is opened
+    When User clicks Create new project
+    Then Project creation form is opened
+    When User selects template (Betula)
+    And User selects market (Poland)
+    And User clicks Create project
+    Then New project1 should be created
+
+   Scenario: Should be able to create new project with all data
+    Given Projects site is opened
+    When User clicks Create new project
+    Then Project creation form is opened
+    When User selects template (Betula)
+    And User selects market (Poland)
+    And User provides description (test)
+    And User clicks Create project
+    Then New project2 should be created
+
+   Scenario: Should not be able to create new template with no mandatory data
+    Given Projects site is opened
+    When User clicks Create new project
+    Then Project creation form is opened
+    When User clicks Create project
+    Then Project creation form is opened
+    When User selects template (Betula)
+    When User clicks Create project
+    Then Project creation form is opened
