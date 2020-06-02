@@ -1,7 +1,7 @@
 Feature: Login 
 
    As a user I want to be able to login correctly
-
+    @loginPage
    Scenario: Should be able to log in with correct username and password
     Given Login page is opened
     When User provides correct username
@@ -12,7 +12,7 @@ Feature: Login
 Feature: Login errors 
     
     As a user I want to receive clear and unambigous error message when login attempt fails
-
+    @loginPage
     Scenario: Should not be able to log in with incorrect username and correct password
      Given Login page is opened
      When User provides incorrect username
@@ -54,7 +54,7 @@ Feature: Login errors
 Feature: Logout 
 
    As a user I want to be able to logout correctly
-
+    @loginPage
    Scenario: Should be able to log out
     Given Projects site is opened
     When User clicks user menu
@@ -64,9 +64,24 @@ Feature: Logout
 Feature: Templates entries display 
 
    As a user I want to be able to define how many templates should be shown
-
+    @templatesPage
    Scenario: Should be able to change number of displayed templates
     Given Templates site is opened
+    When User selects 50 entries
+    Then Shows up to 50 entries
+    When User selects All entries
+    Then Shows all entries
+    When User selects 25 entries
+    Then Shows up to 25 entries
+    When User selects 100 entries
+    Then Shows up to 100 entries
+
+Feature: Projects entries display 
+
+   As a user I want to be able to define how many projects should be shown
+    @projectsPage
+   Scenario: Should be able to change number of displayed projects
+    Given Projects site is opened
     When User selects 50 entries
     Then Shows up to 50 entries
     When User selects All entries
@@ -79,27 +94,47 @@ Feature: Templates entries display
 Feature: Templates pagination 
 
    As a user I want to be able to navigate through template pages
-
+    @templatesPage
    Scenario: Should be able to change pages
     Given Templates site is opened
     When User selects page 2
-    Then Templates from page 2 are shown
+    Then Records from page 2 are shown
     When User selects page 4
-    Then Templates from page 4 are shown
+    Then Records from page 4 are shown
+
+Feature: Projects pagination 
+
+   As a user I want to be able to navigate through project pages
+    @projectsPage
+   Scenario: Should be able to change pages
+    Given Projects site is opened
+    When User selects page 2
+    Then Records from page 2 are shown
+    When User selects page 4
+    Then Records from page 4 are shown
 
 Feature: Templates long names tooltips 
 
    As a user I want to be able to read all the info from columns
-
+    @templatesPage
    Scenario: Should display a tooltip with whole text when it is to long to be shown in column
     Given Templates site is opened
+    When User moves mouse to a column with short text
+    Then Tooltip with all text is shown
+
+Feature: Projects long names tooltips 
+
+   As a user I want to be able to read all the info from columns
+    @projectsPage
+   Scenario: Should display a tooltip with whole text when it is to long to be shown in column
+    Given Projects site is opened
     When User moves mouse to a column with short text
     Then Tooltip with all text is shown
 
 Feature: Templates selection 
 
    As a user I want to be able to select and deselect one/ multiple / all templates
-
+    @templatesPage
    Scenario: Should be able to select and deselect templates
     Given Templates site is opened
     When User selects template 99
@@ -118,10 +153,32 @@ Feature: Templates selection
     When User deselects all templates
     Then All templates are deselected
 
+Feature: Projects selection 
+
+   As a user I want to be able to select and deselect one/ multiple / all projects
+    @projectsPage
+   Scenario: Should be able to select and deselect projects
+    Given Projects site is opened
+    When User selects project 99
+    Then Project 99 is selected
+    When User selects project 92
+    Then Project 92 is selected
+    When User deselects project 92
+    Then Project 92 is not selected
+    When User deselects project 99
+    Then Project 99 is deselected
+
+   Scenario: Should be able to select and deselect all projects 
+    Given Projects site is opened
+    When User selects all projects
+    Then All projects are selected
+    When User deselects all projects
+    Then All projects are deselected
+
 Feature: Templates filtering 
 
    As a user I want to be able to select filter templates by all columns
-
+    @templatesPage
    Scenario: Should be able to filter templates by Project Name
     Given Templates site is opened
     When User types Cream to filter input
@@ -150,7 +207,7 @@ Feature: Templates filtering
 Feature: Templates column sorting 
 
    As a user I want to be able to sort table by all columns
-
+    @templatesPage
    Scenario: Should be able to sort templates by Project Name
     Given Templates site is opened
     When User clicks Project Name column (ascending)
@@ -182,7 +239,7 @@ Feature: Templates column sorting
 Feature: Templates types 
 
    As a user I want to be able to work only with License-in/R&D templates
-
+    @templatesPage
    Scenario: Should be able to display only License-in/ R&D templates
     Given Templates site is opened
     When User clicks Templates: License-in
@@ -193,7 +250,7 @@ Feature: Templates types
 Feature: Template details 
 
    As a user I want to be able check template details
-
+    @templatesPage
    Scenario: Should be able to open and close template
     Given Templates site is opened
     When User clicks on template (94)
@@ -236,7 +293,7 @@ Feature: Template details
 Feature: Templates full screen 
 
    As a user I want to be able to open template details in full screen mode
-
+    @templatesPage
    Scenario: Should be able to open template information in full screen mode
     Given Templates site is opened
     When User clicks on template (94)
@@ -292,7 +349,7 @@ Feature: Templates full screen
 Feature: Templates changelog 
 
    As a user I want to be able to check changes made to a template
-
+    @templatesPage
    Scenario: Should be able to open template changelog
     Given Templates site is opened
     When User clicks on template (94)
@@ -311,7 +368,7 @@ Feature: Templates changelog
 Feature: Templates edit 
 
    As a user I want to be able to edit template data
-
+    @templatesPage
    Scenario: Should be able to edit template information
     Given Templates site is opened
     When User clicks on template (94)
@@ -391,7 +448,7 @@ Feature: Templates edit
 Feature: Templates creation 
 
    As a user I want to be able to create new templates
-
+    @templatesPage
    Scenario: Should be able to create new template with mandatory data only
     Given Templates site is opened
     When User clicks Create new template
